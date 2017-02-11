@@ -1,12 +1,12 @@
 {
-  "name": "react-redux-boilerplate",
-  "description": "React + Redux boilerplate with ES2015, react-router and Bulma.",
+  "name": "mealprep-client",
+  "description": "Meal prep app.",
   "version": "1.0.2",
   "main": "src/index.js",
   "license": "MIT",
   "scripts": {
     "predev": "babel-node buildScripts/devMessage.js",
-    "dev": "npm-run-all --parallel open:src lint:watch test:watch start-mockapi",
+    "dev": "npm-run-all --parallel open:src lint:watch",
     "open:src": "babel-node buildScripts/devServer.js",
     "lint": "esw src buildScripts --color",
     "lint:watch": "npm run lint -- --watch",
@@ -17,14 +17,12 @@
     "preprod": "npm-run-all prodMessage clean-dist lint",
     "prod": "babel-node buildScripts/build.js",
     "postprod": "babel-node buildScripts/prodServer.js",
-    "generate-mock-data": "babel-node buildScripts/generateMockData.js",
-    "prestart-mockapi": "npm run generate-mock-data",
-    "start-mockapi": "json-server --watch src/api/db.json --port 3001",
     "test": "mocha buildScripts/testSetup.js \"test/**/*.test.js\"",
     "test:watch": "npm run test -- --watch"
   },
   "dependencies": {
     "bulma": "^0.3.1",
+    "classnames": "^2.2.5",
     "font-awesome": "^4.7.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
