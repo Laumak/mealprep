@@ -7,7 +7,7 @@ const propTypes = {
 
 const PlannerDay = ({ day, content }) => {
     return(
-        <div className="column is-one-third">
+        <div className="column is-half">
             <div className="card">
                 <header className="card-header">
                     <p className="card-header-title">

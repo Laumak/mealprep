@@ -15,7 +15,7 @@ const links = [
         name: "Randomizer",
     }, {
         url: "/planner",
-        name: "Meal planner",
+        name: "Planner",
     },
 ];
 

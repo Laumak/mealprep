@@ -4,48 +4,26 @@ import PlannerDay from "./plannerDay";
 
 const propTypes = {
     weekNumber: PropTypes.number.isRequired,
+    days: PropTypes.array.isRequired,
 };
 
-const PlannerWeek = ({ weekNumber }) => {
+function renderDays(days) {
+    return days.map(({ name, content }) =>
+        <PlannerDay
+            day={name}
+            content={content}
+            key={name}
+        />
+    );
+}
+
+const PlannerWeek = ({ weekNumber, days }) => {
     return(
-        <div>
+        <div className="planner-week">
             <h2 className="title is-3">Viikko {weekNumber}</h2>
 
             <div className="columns is-multiline">
-                <PlannerDay
-                    day="Maanantai"
-                    content="Stuff"
-                />
-
-                <PlannerDay
-                    day="Tiistai"
-                    content="Stuff"
-                />
-
-                <PlannerDay
-                    day="Keskiviikko"
-                    content="Stuff"
-                />
-
-                <PlannerDay
-                    day="Torstai"
-                    content="Stuff"
-                />
-
-                <PlannerDay
-                    day="Perjantai"
-                    content="Stuff"
-                />
-
-                <PlannerDay
-                    day="Lauantai"
-                    content="Stuff"
-                />
-
-                <PlannerDay
-                    day="Sunnuntai"
-                    content="Stuff"
-                />
+                { renderDays(days) }
             </div>
         </div>
     );
