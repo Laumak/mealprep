@@ -1,26 +1,31 @@
 import React, { PropTypes } from "react";
+import Card from "../../components/card";
 
 const propTypes = {
     day: PropTypes.string,
-    content: PropTypes.string,
+    lunch: PropTypes.string,
+    dinner: PropTypes.string,
 };
 
-const PlannerDay = ({ day, content }) => {
+const PlannerDay = ({ day, lunch, dinner }) => {
     return(
-        <div className="column is-half">
-            <div className="card">
-                <header className="card-header">
-                    <p className="card-header-title">
-                        {day}
-                    </p>
-                </header>
-                <div className="card-content">
-                    <div className="content">
-                        <p>{content}</p>
+        <article className="day column is-half">
+            <Card title={day}>
+                <div className="content">
+                    <div className="columns">
+                        <div className="column is-half">
+                            <h3>Lounas</h3>
+                            <p>{lunch}</p>
+                        </div>
+
+                        <div className="column">
+                            <h3>Päivällinen</h3>
+                            <p>{dinner}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </Card>
+        </article>
     );
 };
 

@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 
 import PlannerWeek from "./plannerWeek";
 import PlannerStyle from "./planner.scss";
@@ -9,24 +9,38 @@ const weeks = [
         days: [
             {
                 name: "Maanantai",
+                lunch: "Lunch",
+                dinner: "Dinner",
                 content: "Testing",
             }, {
                 name: "Tiistai",
+                lunch: "Lunch",
+                dinner: "Dinner",
                 content: "Testing",
             }, {
                 name: "Keskiviikko",
+                lunch: "Lunch",
+                dinner: "Dinner",
                 content: "Testing",
             }, {
                 name: "Torstai",
+                lunch: "Lunch",
+                dinner: "Dinner",
                 content: "Testing",
             }, {
                 name: "Perjantai",
+                lunch: "Lunch",
+                dinner: "Dinner",
                 content: "Testing",
             }, {
                 name: "Lauantai",
+                lunch: "Lunch",
+                dinner: "Dinner",
                 content: "Testing",
             }, {
                 name: "Sunnuntai",
+                lunch: "Lunch",
+                dinner: "Dinner",
                 content: "Testing",
             },
         ],

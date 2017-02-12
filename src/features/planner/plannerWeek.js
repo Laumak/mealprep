@@ -8,10 +8,11 @@ const propTypes = {
 };
 
 function renderDays(days) {
-    return days.map(({ name, content }) =>
+    return days.map(({ name, lunch, dinner }) =>
         <PlannerDay
             day={name}
-            content={content}
+            lunch={lunch}
+            dinner={dinner}
             key={name}
         />
     );
