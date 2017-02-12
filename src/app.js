@@ -29,7 +29,7 @@ const App = (props) => {
 
             <Hero />
 
-            <section id="content" className="section">
+            <section className="section main-content">
                 <div className="container">
                     {props.children}
                 </div>
