@@ -21,6 +21,7 @@
     "test:watch": "npm run test -- --watch"
   },
   "dependencies": {
+    "axios": "^0.16.1",
     "bulma": "^0.4.0",
     "classnames": "^2.2.5",
     "font-awesome": "^4.7.0",

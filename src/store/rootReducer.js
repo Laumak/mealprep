@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
 import { routerReducer } from "react-router-redux";
 
-import counter from "./counterReducer";
+import randomMeal from "../features/randomizer/reducer";
 
 const rootReducer = combineReducers({
     routing: routerReducer,
-    counter,
+    meal: randomMeal,
 });
 
 export default rootReducer;

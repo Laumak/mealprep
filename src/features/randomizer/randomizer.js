@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+
+import { FetchRandomMeal } from "./actions";
 
 import Loader from "../../components/loader";
 import LoadingButton from "../../components/loadingButton";
@@ -16,18 +20,20 @@ class Randomizer extends Component {
     this.generateMeal = this.generateMeal.bind(this);
   }
 
+
+
   generateMeal() {
     this.setState({ loading: true });
 
-    setTimeout(() => {
-      this.setState({
-        mealVisible: true,
-        loading: false,
-      });
-    }, 1000);
+    this.props.fetchRandomMeal()
+      .then(() =>
+        this.setState({ mealVisible: true, loading: false })
+      );
   }
 
   render() {
+    const { randomMeal } = this.props;
+
     return(
       <div>
         <div className="generator" style={{ marginBottom: 20 }}>
@@ -42,9 +48,9 @@ class Randomizer extends Component {
         <Loader loading={this.state.loading}>
         {
           this.state.mealVisible &&
-            <Card title="Meal name">
+            <Card title={randomMeal.title}>
               <article className="content">
-                <p>Meal description</p>
+                <p>{randomMeal.description}</p>
               </article>
             </Card>
         }
@@ -54,4 +60,21 @@ class Randomizer extends Component {
   }
 }
 
-export default Randomizer;
+Randomizer.propTypes = {
+  fetchRandomMeal: PropTypes.func.isRequired,
+  randomMeal: PropTypes.object,
+};
+
+const mapState = (state, ownProps) => {
+  return {
+    randomMeal: state.meal.random,
+  };
+};
+
+const mapDispatch = (dispatch, ownProps) => {
+  return {
+    fetchRandomMeal: () => dispatch(FetchRandomMeal()),
+  };
+};
+
+export default connect(mapState, mapDispatch)(Randomizer);
