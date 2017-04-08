@@ -14,11 +14,20 @@ const Hero = ({ subtitle }, { router: { location } }) => {
 
     let title;
 
-
-    if(pathname === "/planner")
-        title = "Meal planner";
-    else if(pathname === "/randomizer")
-        title = "Randomizer";
+    switch(pathname) {
+        case "/planner": {
+            title = "Meal planner";
+            break;
+        }
+        case "/randomizer": {
+            title = "Randomizer";
+            break;
+        }
+        case "/meal/create": {
+            title = "Create a meal";
+            break;
+        }
+    }
 
     return(
         <section className="hero is-primary is-bold">
