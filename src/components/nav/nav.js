@@ -24,6 +24,7 @@ class Nav extends Component {
       <NavLink
         name={name}
         url={url}
+        toggleNav={this.toggleNav}
         key={url}
       />
     );
