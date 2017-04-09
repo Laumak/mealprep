@@ -7,7 +7,7 @@ export const FetchMeals = () => dispatch => {
     .then(resp => {
       return dispatch({
         type: "FETCH_MEALS_SUCCESS",
-        payload: resp.data.meals.data,
+        payload: resp.data.meals,
       });
     })
     .catch(error => {

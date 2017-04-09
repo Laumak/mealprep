@@ -4,13 +4,18 @@ import { connect } from "react-redux";
 import { FetchMeals } from "../actions";
 
 import Card from "../../../components/card";
+import Pagination from "../../../components/pagination";
 
 import "../styles/meals.scss";
 
 class Meals extends Component {
   static propTypes = {
     fetchMeals: PropTypes.func.isRequired,
-    meals: PropTypes.array.isRequired,
+    meals: PropTypes.shape({
+      data: PropTypes.array,
+      prev_page_url: PropTypes.string,
+      next_page_url: PropTypes.string,
+    }).isRequired,
   }
 
   constructor(props) {
@@ -29,7 +34,7 @@ class Meals extends Component {
   }
 
   renderMeals() {
-    return this.props.meals.map(meal => {
+    return this.props.meals.data.map(meal => {
       return (
         <Card title={meal.title} key={meal.id} className="meal">
           <p>{meal.description}</p>
@@ -48,9 +53,17 @@ class Meals extends Component {
     }
 
     return(
-      <section className="meals">
-        { this.renderMeals() }
+      <section>
+        <div className="meals">
+          { this.renderMeals() }
+        </div>
+
+        <Pagination
+          prevPageUrl={this.props.meals.prev_page_url}
+          nextPageUrl={this.props.meals.next_page_url}
+        />
       </section>
+
     );
   }
 }
