@@ -65,13 +65,13 @@ Randomizer.propTypes = {
   randomMeal: PropTypes.object,
 };
 
-const mapState = (state, ownProps) => {
+const mapState = state => {
   return {
-    randomMeal: state.meal.random,
+    randomMeal: state.random.meal,
   };
 };
 
-const mapDispatch = (dispatch, ownProps) => {
+const mapDispatch = dispatch => {
   return {
     fetchRandomMeal: () => dispatch(FetchRandomMeal()),
   };

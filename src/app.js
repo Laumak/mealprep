@@ -17,6 +17,9 @@ const links = [
   }, {
     url: "/planner",
     name: "Planner",
+  }, {
+    url: "/meal/create",
+    name: "Create a meal",
   },
 ];
 

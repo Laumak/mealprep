@@ -9,6 +9,13 @@ class ShowMeal extends Component {
   static propTypes = {
     routeParams: PropTypes.object.isRequired,
     fetchMeal: PropTypes.func.isRequired,
+    meal: PropTypes.shape({
+      title: PropTypes.string,
+      description: PropTypes.string,
+      url: PropTypes.string,
+      headerImage: PropTypes.string,
+      images: PropTypes.array,
+    }),
   }
 
   constructor(props) {
@@ -16,27 +23,37 @@ class ShowMeal extends Component {
 
     this.state = {
       loading: false,
-      meal: {},
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const id = this.props.routeParams.id;
 
-    this.props.fetchMeal(id)
-      .then(resp => this.setState({ meal: resp.data.meal }));
+    this.props.fetchMeal(id);
+  }
+
+  componentWillReceiveProps({ meal, routeParams }) {
+    if(meal && meal.id !== +routeParams.id) {
+      return this.props.fetchMeal(routeParams.id);
+    }
   }
 
   render() {
     return(
       <article className="meal">
-        <Card title={this.state.meal.title}>
-          {this.state.meal.description}
+        <Card title={this.props.meal.title}>
+          {this.props.meal.description}
         </Card>
       </article>
     );
   }
 }
+
+const mapState = state => {
+  return {
+    meal: state.selected.meal,
+  };
+};
 
 const mapDispatch = dispatch => {
   return {
@@ -44,4 +61,4 @@ const mapDispatch = dispatch => {
   };
 };
 
-export default connect(null, mapDispatch)(ShowMeal);
+export default connect(mapState, mapDispatch)(ShowMeal);
