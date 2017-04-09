@@ -1,5 +1,6 @@
 const getBaseUrl = () => {
-  const inDevelopment = process.env !== "production";
+  const inDevelopment = process.env.NODE_ENV !== "production";
+
   return inDevelopment
     ? "http://api.mealprep.dev/v0"
     : "http://api-mealprep.ddns.net/v0";
