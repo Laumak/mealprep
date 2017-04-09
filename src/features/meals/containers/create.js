@@ -5,6 +5,20 @@ import { browserHistory } from "react-router";
 
 import { StoreMeal } from "../actions";
 
+import RadioGroup from "../../../components/radioGroup";
+
+const options = [
+  {
+    value: "at-home",
+    title: "At home",
+    parent: "mealType",
+  }, {
+    value: "out",
+    title: "Eating out",
+    parent: "mealType",
+  },
+];
+
 class CreateMeal extends Component {
   static propTypes = {
     storeMeal: PropTypes.func.isRequired,
@@ -16,6 +30,8 @@ class CreateMeal extends Component {
     this.state = {
       loading: false,
       title: "",
+      mealType: "",
+      url: "",
       description: "",
     };
 
@@ -36,6 +52,7 @@ class CreateMeal extends Component {
 
     const meal = {
       title: this.state.title,
+      type: this.state.mealType,
       url: this.state.url,
       description: this.state.description,
     };
@@ -70,6 +87,12 @@ class CreateMeal extends Component {
               />
             </p>
           </div>
+
+          <RadioGroup
+            label="Meal type"
+            options={options}
+            onChange={this.handleOnChange}
+          />
 
           <div className="field">
             <label className="label">URL</label>
@@ -110,7 +133,7 @@ class CreateMeal extends Component {
 
 const mapDispatch = dispatch => {
   return {
-    storeMeal: (meal) => dispatch(StoreMeal(meal)),
+    storeMeal: meal => dispatch(StoreMeal(meal)),
   };
 };
 

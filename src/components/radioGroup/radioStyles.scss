@@ -1,0 +1,39 @@
+@import "~bulma";
+
+$text: #4c4c4c;
+$outline: #cccccc;
+$selected: $primary;
+
+.radio-group {
+  margin-bottom: 15px;
+}
+
+.radio-item {
+  margin-right: 20px;
+
+  input[type="radio"] {
+    display: none;
+
+    & + label {
+      color: $text;
+    }
+  }
+
+  .radio-button {
+    transition: background-color 250ms linear;
+    background-color: #fff;
+    border: 2px solid $outline;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    vertical-align: middle;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  input[type="radio"]:checked + label {
+    .radio-button {
+      background-color: $selected;
+    }
+  }
+}

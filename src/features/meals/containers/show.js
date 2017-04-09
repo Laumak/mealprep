@@ -15,6 +15,7 @@ class ShowMeal extends Component {
       url: PropTypes.string,
       headerImage: PropTypes.string,
       images: PropTypes.array,
+      type: PropTypes.string,
     }),
   }
 
@@ -42,9 +43,16 @@ class ShowMeal extends Component {
     return(
       <article className="meal">
         <Card title={this.props.meal.title}>
-          <a href={this.props.meal.url} target="_blank" rel="noopener noreferrer">
-            {this.props.meal.url}
-          </a>
+          <p><b>Type:</b> {this.props.meal.type}</p>
+          <div>
+            <span><b>Address: </b></span>
+            <a href={this.props.meal.url} target="_blank" rel="noopener noreferrer">
+              {this.props.meal.url}
+            </a>
+          </div>
+          <br />
+
+          <b>Description:</b>
           <p>{this.props.meal.description}</p>
         </Card>
       </article>
