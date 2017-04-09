@@ -42,7 +42,10 @@ class ShowMeal extends Component {
     return(
       <article className="meal">
         <Card title={this.props.meal.title}>
-          {this.props.meal.description}
+          <a href={this.props.meal.url} target="_blank" rel="noopener noreferrer">
+            {this.props.meal.url}
+          </a>
+          <p>{this.props.meal.description}</p>
         </Card>
       </article>
     );

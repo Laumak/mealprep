@@ -36,6 +36,7 @@ class CreateMeal extends Component {
 
     const meal = {
       title: this.state.title,
+      url: this.state.url,
       description: this.state.description,
     };
 
@@ -65,6 +66,19 @@ class CreateMeal extends Component {
                 className="input"
                 type="text"
                 placeholder="Meal's name"
+                onChange={this.handleOnChange}
+              />
+            </p>
+          </div>
+
+          <div className="field">
+            <label className="label">URL</label>
+            <p className="control">
+              <input
+                name="url"
+                className="input"
+                type="text"
+                placeholder="Where did you find this meal?"
                 onChange={this.handleOnChange}
               />
             </p>
