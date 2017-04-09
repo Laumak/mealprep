@@ -1,7 +1,9 @@
 const getBaseUrl = () => {
-  const inDevelopment = window.localtion.hostname === "localhost";
-  return inDevelopment ? "http://localhost:3001/" : "/";
-}
+  const inDevelopment = process.env !== "production";
+  return inDevelopment
+    ? "http://api.mealprep.dev/v0"
+    : "http://api-mealprep.ddns.net/v0";
+};
 
 const baseUrl = getBaseUrl();
 

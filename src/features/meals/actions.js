@@ -1,6 +1,5 @@
 import axios from "axios";
-
-const baseUrl = "http://api.mealprep.dev/v0";
+import baseUrl from "../../api/baseUrl";
 
 export const FetchMeals = () => dispatch => {
   return axios.get(`${baseUrl}/meals`)
