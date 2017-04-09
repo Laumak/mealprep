@@ -7,6 +7,7 @@ import { FetchRandomMeal } from "./actions";
 import Loader from "../../components/loader";
 import LoadingButton from "../../components/loadingButton";
 import Card from "../../components/card";
+import RadioGroup from "../../components/radioGroup";
 
 class Randomizer extends Component {
   constructor(props) {
@@ -15,28 +16,55 @@ class Randomizer extends Component {
     this.state = {
       loading: false,
       mealVisible: false,
+      mealType: null,
+      noResults: false,
     };
 
     this.generateMeal = this.generateMeal.bind(this);
+    this.handleOnRadioChange = this.handleOnRadioChange.bind(this);
   }
 
-
-
   generateMeal() {
-    this.setState({ loading: true });
+    this.setState({ loading: true, noResults: false });
 
-    this.props.fetchRandomMeal()
+    this.props.fetchRandomMeal(this.state.mealType)
       .then(() =>
         this.setState({ mealVisible: true, loading: false })
+      )
+      .catch(() =>
+        this.setState({ mealVisible: false, loading: false, noResults: true })
       );
+  }
+
+  handleOnRadioChange(e) {
+    const value = e.target.value;
+
+    this.setState({ mealType: value });
   }
 
   render() {
     const { randomMeal } = this.props;
 
+    const options = [
+      {
+        value: "at-home",
+        title: "At home",
+        parent: "meal-type",
+      }, {
+        value: "out",
+        title: "Eating out",
+        parent: "meal-type",
+      },
+    ];
+
     return(
       <div>
         <div className="generator" style={{ marginBottom: 20 }}>
+          <RadioGroup
+            options={options}
+            onChange={this.handleOnRadioChange}
+          />
+
           <LoadingButton
             className="button is-success is-large is-fullwidth"
             text="Generate a random meal"
@@ -46,14 +74,25 @@ class Randomizer extends Component {
         </div>
 
         <Loader loading={this.state.loading}>
-        {
-          this.state.mealVisible &&
-            <Card title={randomMeal.title}>
-              <article className="content">
-                <p>{randomMeal.description}</p>
-              </article>
-            </Card>
-        }
+          <span>
+          {
+            this.state.mealVisible &&
+              <Card title={randomMeal.title}>
+                <article className="content">
+                  <p>{randomMeal.description}</p>
+                </article>
+              </Card>
+          }
+
+          {
+            this.state.noResults &&
+              <Card title="No results found">
+                <article className="content">
+                  <p>No results for the given filters.</p>
+                </article>
+              </Card>
+          }
+          </span>
         </Loader>
       </div>
     );
@@ -73,7 +112,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    fetchRandomMeal: () => dispatch(FetchRandomMeal()),
+    fetchRandomMeal: mealType => dispatch(FetchRandomMeal(mealType)),
   };
 };
 

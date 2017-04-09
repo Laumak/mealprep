@@ -1,8 +1,8 @@
 import axios from "axios";
 import baseUrl from "../../api/baseUrl";
 
-export const FetchRandomMeal = () => dispatch => {
-  return axios.get(`${baseUrl}/meals/random`)
+export const FetchRandomMeal = mealType => dispatch => {
+  return axios.post(`${baseUrl}/meals/random`, { mealType })
     .then(resp => {
       return dispatch({
         "type": "FETCH_RANDOM_MEAL_SUCCESS",
