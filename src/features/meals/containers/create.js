@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import classNames from "classnames";
+import { browserHistory } from "react-router";
 
 import { StoreMeal } from "../actions";
 
@@ -39,7 +40,11 @@ class CreateMeal extends Component {
     };
 
     this.props.storeMeal(meal)
-      .then(resp => this.setState({ loading: false }));
+      .then(resp => {
+        this.setState({ loading: false });
+
+        browserHistory.push(`/meal/${resp.data.meal.id}`);
+      });
   }
 
   render() {
