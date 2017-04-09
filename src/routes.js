@@ -6,6 +6,7 @@ import Home from "./features/home";
 import Randomizer from "./features/randomizer";
 import Planner from "./features/planner";
 
+import Meals from "./features/meals/containers/meals";
 import CreateMeal from "./features/meals/containers/create";
 import ShowMeal   from "./features/meals/containers/show";
 
@@ -15,6 +16,7 @@ export default (
 
     <Route path="randomizer" component={Randomizer} />
     <Route path="planner" component={Planner} />
+    <Route path="meals" component={Meals} />
     <Route path="meal/create" component={CreateMeal} />
     <Route path="meal/:id" component={ShowMeal} />
   </Route>

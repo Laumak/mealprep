@@ -2,6 +2,22 @@ import axios from "axios";
 
 const baseUrl = "http://api.mealprep.dev/v0";
 
+export const FetchMeals = () => dispatch => {
+  return axios.get(`${baseUrl}/meals`)
+    .then(resp => {
+      return dispatch({
+        type: "FETCH_MEALS_SUCCESS",
+        payload: resp.data.meals.data,
+      });
+    })
+    .catch(error => {
+      return dispatch({
+        type: "FETCH_MEALS_FAIL",
+        payload: error,
+      });
+    });
+};
+
 export const FetchMeal = id => dispatch => {
   return axios.get(`${baseUrl}/meals/${id}`)
     .then(resp => {

@@ -1,14 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 
 const propTypes = {
   title: PropTypes.string,
   children: PropTypes.any,
+  className: PropTypes.string,
 };
 
-const Card = ({ title = "Loading...", children }) => {
+const Card = ({ title = "Loading...", children, className }) => {
+  const cardClasses = classNames({
+    card: true,
+    [className]: !!className,
+  });
+
   return(
-    <div className="card">
+    <div className={cardClasses}>
       <header className="card-header">
         <p className="card-header-title">
           {title}
