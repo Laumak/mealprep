@@ -8,11 +8,11 @@ import Planner from "./features/planner";
 import MealCreate from "./features/meals/containers/create";
 
 export default (
-    <Route path="/" component={App}>
-        <IndexRoute component={Home} />
+  <Route path="/" component={App}>
+    <IndexRoute component={Home} />
 
-        <Route path="randomizer" component={Randomizer} />
-        <Route path="planner" component={Planner} />
-        <Route path="meal/create" component={MealCreate} />
-    </Route>
+    <Route path="randomizer" component={Randomizer} />
+    <Route path="planner" component={Planner} />
+    <Route path="meal/create" component={MealCreate} />
+  </Route>
 );

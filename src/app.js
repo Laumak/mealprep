@@ -7,36 +7,36 @@ import Nav from "./components/nav";
 import Hero from "./components/hero";
 
 const propTypes = {
-    children: PropTypes.any.isRequired,
+  children: PropTypes.any.isRequired,
 };
 
 const links = [
-    {
-        url: "/randomizer",
-        name: "Randomizer",
-    }, {
-        url: "/planner",
-        name: "Planner",
-    },
+  {
+    url: "/randomizer",
+    name: "Randomizer",
+  }, {
+    url: "/planner",
+    name: "Planner",
+  },
 ];
 
 const App = (props) => {
-    return(
-        <div>
-            <Nav
-                title="Meal Prep"
-                links={links}
-            />
+  return(
+    <div>
+      <Nav
+        title="Meal Prep"
+        links={links}
+      />
 
-            <Hero />
+      <Hero />
 
-            <section className="section main-content">
-                <div className="container">
-                    {props.children}
-                </div>
-            </section>
+      <section className="section main-content">
+        <div className="container">
+          {props.children}
         </div>
-    );
+      </section>
+    </div>
+  );
 };
 
 App.propTypes = propTypes;

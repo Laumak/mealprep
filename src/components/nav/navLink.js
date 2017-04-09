@@ -8,13 +8,13 @@ const propTypes = {
 };
 
 const NavLink = ({ name, url }) => (
-    <Link
-        to={url}
-        className="nav-item is-tab"
-        activeClassName="is-active"
-    >
-        {name}
-    </Link>
+  <Link
+    to={url}
+    className="nav-item is-tab"
+    activeClassName="is-active"
+  >
+    {name}
+  </Link>
 );
 
 NavLink.propTypes = propTypes;

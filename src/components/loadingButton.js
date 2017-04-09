@@ -3,26 +3,26 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 
 const propTypes = {
-    loading: PropTypes.bool.isRequired,
-    text: PropTypes.string,
-    className: PropTypes.any,
-    handleOnClick: PropTypes.func,
+  loading: PropTypes.bool.isRequired,
+  text: PropTypes.string,
+  className: PropTypes.any,
+  handleOnClick: PropTypes.func,
 };
 
 const LoadingButton = (props) => {
-    const buttonClasses = classNames({
-        [props.className]: true,
-        "is-loading": props.loading,
-    });
+  const buttonClasses = classNames({
+    [props.className]: true,
+    "is-loading": props.loading,
+  });
 
-    return(
-        <a
-            className={buttonClasses}
-            onClick={props.handleOnClick}
-        >
-            { props.text }
-        </a>
-    );
+  return(
+    <a
+      className={buttonClasses}
+      onClick={props.handleOnClick}
+    >
+      { props.text }
+    </a>
+  );
 };
 
 LoadingButton.propTypes = propTypes;
