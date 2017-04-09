@@ -6,6 +6,7 @@ import { browserHistory } from "react-router";
 import { StoreMeal } from "../actions";
 
 import RadioGroup from "../../../components/radioGroup";
+import FileUpload from "../../../components/fileUpload";
 
 const options = [
   {
@@ -33,16 +34,26 @@ class CreateMeal extends Component {
       mealType: "",
       url: "",
       description: "",
+      file: null,
     };
 
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
     this.handleOnChange = this.handleOnChange.bind(this);
+    this.handleFileChange = this.handleFileChange.bind(this);
   }
 
   handleOnChange(e) {
     const value = e.target.value;
 
     return this.setState({ [e.target.name]: value });
+  }
+
+  handleFileChange(e) {
+    const file = e.target.files[0];
+
+    debugger;
+
+    this.setState({ file });
   }
 
   handleOnSubmit(e) {
@@ -92,6 +103,11 @@ class CreateMeal extends Component {
             label="Meal type"
             options={options}
             onChange={this.handleOnChange}
+          />
+
+          <FileUpload
+            name="headerImage"
+            handleFileChange={this.handleFileChange}
           />
 
           <div className="field">
