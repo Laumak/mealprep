@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router";
+import { NavLink as RouterLink } from "react-router-dom";
 
 const propTypes = {
   name: PropTypes.string.isRequired,
@@ -9,14 +9,14 @@ const propTypes = {
 };
 
 const NavLink = ({ name, url, toggleNav }) => (
-  <Link
+  <RouterLink
     to={url}
     onClick={toggleNav}
     className="nav-item is-tab"
     activeClassName="is-active"
   >
     {name}
-  </Link>
+  </RouterLink>
 );
 
 NavLink.propTypes = propTypes;

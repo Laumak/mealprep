@@ -8,7 +8,7 @@ import Card from "../../../components/card";
 
 class ShowMeal extends Component {
   static propTypes = {
-    routeParams: PropTypes.object.isRequired,
+    match: PropTypes.object.isRequired,
     fetchMeal: PropTypes.func.isRequired,
     meal: PropTypes.shape({
       title: PropTypes.string,
@@ -29,14 +29,14 @@ class ShowMeal extends Component {
   }
 
   componentDidMount() {
-    const id = this.props.routeParams.id;
+    const id = this.props.match.params.id;
 
     this.props.fetchMeal(id);
   }
 
-  componentWillReceiveProps({ meal, routeParams }) {
-    if(meal && meal.id !== +routeParams.id) {
-      return this.props.fetchMeal(routeParams.id);
+  componentWillReceiveProps({ meal, match }) {
+    if(meal && meal.id !== +match.params.id) {
+      return this.props.fetchMeal(match.params.id);
     }
   }
 

@@ -1,14 +1,18 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { Route, Switch } from "react-router-dom";
 import "./styles/app.scss";
 import "../node_modules/font-awesome/css/font-awesome.css";
 
 import Nav from "./components/nav";
 import Hero from "./components/hero";
 
-const propTypes = {
-  children: PropTypes.any.isRequired,
-};
+import Home       from "./features/home";
+import Planner    from "./features/planner";
+import Randomizer from "./features/randomizer";
+
+import Meals      from "./features/meals/containers/meals";
+import ShowMeal   from "./features/meals/containers/show";
+import CreateMeal from "./features/meals/containers/create";
 
 const links = [
   {
@@ -26,25 +30,28 @@ const links = [
   },
 ];
 
-const App = (props) => {
+const App = () => {
   return(
     <div>
-      <Nav
-        title="Meal Prep"
-        links={links}
-      />
+      <Nav title="Meal Prep" links={links} />
 
       <Hero />
 
       <section className="section main-content">
         <div className="container">
-          {props.children}
+          <Route path="/" exact component={Home} />
+
+          <Route path="/randomizer" component={Randomizer} />
+          <Route path="/planner" component={Planner} />
+          <Route path="/meals" component={Meals} />
+          <Switch>
+            <Route path="/meal/create" component={CreateMeal} />
+            <Route path="/meal/:id" component={ShowMeal} />
+          </Switch>
         </div>
       </section>
     </div>
   );
 };
-
-App.propTypes = propTypes;
 
 export default App;

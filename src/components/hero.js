@@ -3,18 +3,13 @@ import PropTypes from "prop-types";
 
 const propTypes = {
   subtitle: PropTypes.string,
+  location: PropTypes.object.isRequired,
 };
 
-const contextTypes = {
-  router: PropTypes.object,
-};
-
-const Hero = ({ subtitle }, { router: { location } }) => {
-  const { pathname } = location;
-
+const Hero = ({ subtitle, location }) => {
   let title;
 
-  switch(pathname) {
+  switch(location) {
     case "/planner": {
       title = "Meal planner";
       break;
@@ -50,6 +45,5 @@ const Hero = ({ subtitle }, { router: { location } }) => {
 };
 
 Hero.propTypes = propTypes;
-Hero.contextTypes = contextTypes;
 
 export default Hero;
