@@ -35,7 +35,7 @@ const App = () => {
     <div>
       <Nav title="Meal Prep" links={links} />
 
-      <Hero />
+      <Route path="/" component={Hero}></Route>
 
       <section className="section main-content">
         <div className="container">

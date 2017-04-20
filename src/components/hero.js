@@ -9,7 +9,7 @@ const propTypes = {
 const Hero = ({ subtitle, location }) => {
   let title;
 
-  switch(location) {
+  switch(location.pathname) {
     case "/planner": {
       title = "Meal planner";
       break;
@@ -21,6 +21,13 @@ const Hero = ({ subtitle, location }) => {
     case "/meal/create": {
       title = "Create a meal";
       break;
+    }
+    case "/meals": {
+      title = "All meals";
+      break;
+    }
+    default: {
+      return null;
     }
   }
 
