@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 import PlannerWeek from "./plannerWeek";
-import PlannerStyle from "./planner.scss";
 
 const weeks = [
   {
@@ -57,7 +56,6 @@ class Planner extends Component {
       <PlannerWeek
         weekNumber={weekNumber}
         days={days}
-        style={PlannerStyle}
         key={weekNumber}
       />
     );

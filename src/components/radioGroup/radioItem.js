@@ -1,8 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import "./radioStyles.scss";
-
 const propTypes = {
   option: PropTypes.shape({
     value: PropTypes.string.isRequired,

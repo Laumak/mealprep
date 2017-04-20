@@ -6,8 +6,6 @@ import { FetchMeals } from "../actions";
 import Card from "../../../components/card";
 import Pagination from "../../../components/pagination";
 
-import "../styles/meals.scss";
-
 class Meals extends Component {
   static propTypes = {
     fetchMeals: PropTypes.func.isRequired,
