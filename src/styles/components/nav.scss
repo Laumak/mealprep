@@ -1,0 +1,18 @@
+a.nav-item.is-tab.is-active {
+  border-bottom-color: transparent;
+  background-color: $link;
+  color: $white;
+}
+
+a.nav-item.is-tab {
+  transition: all 150ms ease-out;
+
+  &:hover {
+    border-bottom-color: transparent;
+    color: $link;
+  }
+
+  &.is-active:hover {
+    color: $white;
+  }
+}

@@ -8,6 +8,9 @@ section.main-content {
   padding: 1.5rem;
 }
 
-@import "./radio";
-@import "./meals";
-@import "./planner";
+@import "./misc/bulmaFixes";
+@import "./components/radio";
+@import "./components/nav";
+
+@import "./features/meals";
+@import "./features/planner";
