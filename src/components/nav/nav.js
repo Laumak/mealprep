@@ -1,5 +1,6 @@
-import React, { Component, PropTypes } from "react";
-import { Link } from "react-router";
+import React, { Component } from "react";
+import PropTypes  from "prop-types";
+import { Link }   from "react-router";
 import classNames from "classnames";
 
 import NavLink from "./navLink";
