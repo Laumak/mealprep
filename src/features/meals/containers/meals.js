@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
+import navigate from "../../../utils/navigate";
+
 import { FetchMeals } from "../actions";
 
 import Card from "../../../components/card";
@@ -15,6 +17,12 @@ class Meals extends Component {
       prev_page_url: PropTypes.string,
       next_page_url: PropTypes.string,
     }).isRequired,
+  }
+
+  static contextTypes = {
+    router: React.PropTypes.shape({
+      history: React.PropTypes.object.isRequired,
+    }),
   }
 
   constructor(props) {
@@ -32,10 +40,18 @@ class Meals extends Component {
       .then(() => this.setState({ loading: false }));
   }
 
+  onHeaderClick = id => navigate(`/meal/${id}`, this.context);
+
   renderMeals() {
     return this.props.meals.data.map(meal => {
       return (
-        <Card title={meal.title} key={meal.id} className="meal">
+        <Card
+          className="meal"
+          title={meal.title}
+          id={meal.id}
+          onHeaderClick={this.onHeaderClick}
+          key={meal.id}
+        >
           <p>{meal.description}</p>
         </Card>
       );

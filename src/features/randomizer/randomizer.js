@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
+import navigate from "../../utils/navigate";
+
 import { FetchRandomMeal } from "./actions";
 
 import Loader from "../../components/loader";
@@ -13,6 +15,12 @@ class Randomizer extends Component {
   static propTypes = {
     fetchRandomMeal: PropTypes.func.isRequired,
     randomMeal: PropTypes.object,
+  }
+
+  static contextTypes = {
+    router: React.PropTypes.shape({
+      history: React.PropTypes.object.isRequired,
+    }),
   }
 
   state = {
@@ -40,6 +48,8 @@ class Randomizer extends Component {
     this.setState({ mealType: value });
   }
 
+  onHeaderClick = id => navigate(`/meal/${id}`, this.context);
+
   render() {
     const { randomMeal } = this.props;
 
@@ -61,6 +71,7 @@ class Randomizer extends Component {
           <RadioGroup
             options={options}
             onChange={this.handleOnRadioChange}
+            selectedValue={this.state.mealType}
           />
 
           <LoadingButton
@@ -75,7 +86,11 @@ class Randomizer extends Component {
           <span>
           {
             this.state.mealVisible &&
-              <Card title={randomMeal.title}>
+              <Card
+                title={randomMeal.title}
+                id={randomMeal.id}
+                onHeaderClick={this.onHeaderClick}
+              >
                 <article className="content">
                   <p>{randomMeal.description}</p>
                 </article>

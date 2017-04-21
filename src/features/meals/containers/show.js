@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
+import navigate from "../../../utils/navigate";
+
 import { FetchMeal } from "../actions";
 
 import Card from "../../../components/card";
@@ -11,12 +13,22 @@ class ShowMeal extends Component {
     match: PropTypes.object.isRequired,
     fetchMeal: PropTypes.func.isRequired,
     meal: PropTypes.shape({
+      id: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number,
+      ]),
       title: PropTypes.string,
       description: PropTypes.string,
       url: PropTypes.string,
       headerImage: PropTypes.string,
       images: PropTypes.array,
       type: PropTypes.string,
+    }),
+  }
+
+  static contextTypes = {
+    router: React.PropTypes.shape({
+      history: React.PropTypes.object.isRequired,
     }),
   }
 
@@ -36,10 +48,16 @@ class ShowMeal extends Component {
     }
   }
 
+  onHeaderClick = id => navigate(`/meal/${id}/edit`, this.context);
+
   render() {
     return (
       <article className="meal">
-        <Card title={this.props.meal.title}>
+        <Card
+          title={this.props.meal.title}
+          id={this.props.meal.id}
+          onHeaderClick={this.onHeaderClick}
+        >
           <p><b>Type:</b> {this.props.meal.type}</p>
           <div>
             <span><b>Address: </b></span>

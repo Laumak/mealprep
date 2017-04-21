@@ -7,28 +7,27 @@ const propTypes = {
   label: PropTypes.string,
   options: PropTypes.array,
   onChange: PropTypes.func,
+  selectedValue: PropTypes.string,
 };
 
-const renderItems = (options, onChange) => {
-  return options.map(option => (
-    <RadioItem
-      option={option}
-      onChange={onChange}
-      key={option.value}
-    />
-  ));
-};
+const RadioGroup = props => {
+  const renderItems = () => {
+    return props.options.map(option => (
+      <RadioItem
+        option={option}
+        onChange={props.onChange}
+        selectedValue={props.selectedValue}
+        key={option.value}
+      />
+    ));
+  };
 
-const RadioGroup = (props) => {
   return (
-    <div className="radio-group">
-      {
-        props.label &&
-          <label className="label">{props.label}</label>
-      }
+    <div className="field radio-group">
+      { props.label && <label className="label">{props.label}</label> }
 
       <p className="control">
-        { renderItems(props.options, props.onChange) }
+        { renderItems() }
       </p>
     </div>
   );

@@ -12,6 +12,7 @@ import Randomizer from "./features/randomizer";
 
 import Meals      from "./features/meals/containers/meals";
 import ShowMeal   from "./features/meals/containers/show";
+import EditMeal   from "./features/meals/containers/edit";
 import CreateMeal from "./features/meals/containers/create";
 
 const links = [
@@ -46,6 +47,7 @@ const App = () => {
           <Route path="/meals" component={Meals} />
           <Switch>
             <Route path="/meal/create" component={CreateMeal} />
+            <Route path="/meal/:id/edit" component={EditMeal} />
             <Route path="/meal/:id" component={ShowMeal} />
           </Switch>
         </div>
