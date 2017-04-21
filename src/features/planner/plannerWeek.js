@@ -22,7 +22,23 @@ function renderDays(days) {
 const PlannerWeek = ({ weekNumber, days }) => {
   return (
     <div className="planner-week">
-      <h2 className="title is-3">Viikko {weekNumber}</h2>
+      <nav className="level">
+        <div className="level-item has-text-centered">
+          <div>
+            <a className="title">Viikko {weekNumber - 1}</a>
+          </div>
+        </div>
+        <div className="level-item has-text-centered current">
+          <div>
+            <a className="title">Viikko {weekNumber}</a>
+          </div>
+        </div>
+        <div className="level-item has-text-centered">
+          <div>
+            <a className="title">Viikko {weekNumber + 1}</a>
+          </div>
+        </div>
+      </nav>
 
       <div className="columns is-multiline">
         { renderDays(days) }
