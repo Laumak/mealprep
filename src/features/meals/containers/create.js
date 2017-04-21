@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classNames from "classnames";
-import { browserHistory } from "react-router";
 
 import { StoreMeal } from "../actions";
+import navigate from "../../../utils/navigate";
 
 import RadioGroup from "../../../components/radioGroup";
 
@@ -35,6 +35,11 @@ class CreateMeal extends Component {
       url: "",
       description: "",
     };
+  static contextTypes = {
+    router: React.PropTypes.shape({
+      history: React.PropTypes.object.isRequired,
+    }),
+  }
 
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
     this.handleOnChange = this.handleOnChange.bind(this);
@@ -59,10 +64,10 @@ class CreateMeal extends Component {
     };
 
     this.props.storeMeal(meal)
-      .then(resp => {
+      .then(({ data: { meal }}) => {
         this.setState({ loading: false });
 
-        browserHistory.push(`/meal/${resp.data.meal.id}`);
+        return navigate(`/meal/${meal.id}`, this.context);
       });
   }
 
