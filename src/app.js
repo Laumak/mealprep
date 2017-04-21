@@ -31,7 +31,7 @@ const links = [
 ];
 
 const App = () => {
-  return(
+  return (
     <div>
       <Nav title="Meal Prep" links={links} />
 

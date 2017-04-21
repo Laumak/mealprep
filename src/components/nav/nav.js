@@ -6,21 +6,20 @@ import classNames from "classnames";
 import NavLink from "./navLink";
 
 class Nav extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      mobileMenuOpen: false,
-    };
-
-    this.toggleNav = this.toggleNav.bind(this);
+  static propTypes = {
+    title: PropTypes.string,
+    links: PropTypes.array.isRequired,
   }
 
-  toggleNav() {
+  state = {
+    mobileMenuOpen: false,
+  }
+
+  toggleNav = () => {
     this.setState({ mobileMenuOpen: !this.state.mobileMenuOpen });
   }
 
-  renderMenuLinks(links) {
+  renderMenuLinks = links => {
     return links.map(({ name, url }) =>
       <NavLink
         name={name}
@@ -43,7 +42,7 @@ class Nav extends Component {
       "is-active": this.state.mobileMenuOpen,
     });
 
-    return(
+    return (
       <nav className="nav has-shadow">
         <div className="container">
           <div className="nav-left">
@@ -66,10 +65,5 @@ class Nav extends Component {
     );
   }
 }
-
-Nav.propTypes = {
-  title: PropTypes.string,
-  links: PropTypes.array.isRequired,
-};
 
 export default Nav;

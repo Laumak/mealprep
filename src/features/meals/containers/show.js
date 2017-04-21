@@ -20,12 +20,8 @@ class ShowMeal extends Component {
     }),
   }
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      loading: false,
-    };
+  state = {
+    loading: false,
   }
 
   componentDidMount() {
@@ -41,7 +37,7 @@ class ShowMeal extends Component {
   }
 
   render() {
-    return(
+    return (
       <article className="meal">
         <Card title={this.props.meal.title}>
           <p><b>Type:</b> {this.props.meal.type}</p>

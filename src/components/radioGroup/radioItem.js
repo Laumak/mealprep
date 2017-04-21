@@ -11,7 +11,7 @@ const propTypes = {
 };
 
 const RadioItem = ({ option: { value, title, parent }, onChange }) => {
-  return(
+  return (
     <span className="radio-item">
       <input
         type="radio"

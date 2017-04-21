@@ -9,13 +9,13 @@ const propTypes = {
   handleOnClick: PropTypes.func,
 };
 
-const LoadingButton = (props) => {
+const LoadingButton = props => {
   const buttonClasses = classNames({
     [props.className]: true,
     "is-loading": props.loading,
   });
 
-  return(
+  return (
     <a
       className={buttonClasses}
       onClick={props.handleOnClick}

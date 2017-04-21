@@ -20,7 +20,7 @@ const renderItems = (options, onChange) => {
 };
 
 const RadioGroup = (props) => {
-  return(
+  return (
     <div className="radio-group">
       {
         props.label &&

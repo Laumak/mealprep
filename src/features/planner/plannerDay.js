@@ -9,7 +9,7 @@ const propTypes = {
 };
 
 const PlannerDay = ({ day, lunch, dinner }) => {
-  return(
+  return (
     <article className="day column is-half">
       <Card title={day}>
         <div className="content">

@@ -14,7 +14,7 @@ const Card = ({ title = "Loading...", children, className }) => {
     [className]: !!className,
   });
 
-  return(
+  return (
     <div className={cardClasses}>
       <header className="card-header">
         <p className="card-header-title">

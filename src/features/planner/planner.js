@@ -62,7 +62,7 @@ class Planner extends Component {
   }
 
   render() {
-    return(
+    return (
       <div className="planner">
         { this.renderWeeks() }
       </div>

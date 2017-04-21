@@ -10,16 +10,11 @@ const propTypes = {
   nextPageUrl: PropTypes.string,
 };
 
-const Pagination = (props) => {
-  const prevPage = () => {
-    props.changePage(props.prevPageUrl);
-  };
+const Pagination = props => {
+  const prevPage = () => props.changePage(props.prevPageUrl);
+  const nextPage = () => props.changePage(props.nextPageUrl);
 
-  const nextPage = () => {
-    props.changePage(props.nextPageUrl);
-  };
-
-  return(
+  return (
     <nav className="pagination is-centered">
       <a
         className="pagination-previous"

@@ -10,21 +10,19 @@ import Card from "../../components/card";
 import RadioGroup from "../../components/radioGroup";
 
 class Randomizer extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      loading: false,
-      mealVisible: false,
-      mealType: null,
-      noResults: false,
-    };
-
-    this.generateMeal = this.generateMeal.bind(this);
-    this.handleOnRadioChange = this.handleOnRadioChange.bind(this);
+  static propTypes = {
+    fetchRandomMeal: PropTypes.func.isRequired,
+    randomMeal: PropTypes.object,
   }
 
-  generateMeal() {
+  state = {
+    loading: false,
+    mealVisible: false,
+    mealType: null,
+    noResults: false,
+  }
+
+  generateMeal = () => {
     this.setState({ loading: true, noResults: false });
 
     this.props.fetchRandomMeal(this.state.mealType)
@@ -36,7 +34,7 @@ class Randomizer extends Component {
       );
   }
 
-  handleOnRadioChange(e) {
+  handleOnRadioChange = e => {
     const value = e.target.value;
 
     this.setState({ mealType: value });
@@ -57,7 +55,7 @@ class Randomizer extends Component {
       },
     ];
 
-    return(
+    return (
       <div>
         <div className="generator" style={{ marginBottom: 20 }}>
           <RadioGroup
@@ -98,11 +96,6 @@ class Randomizer extends Component {
     );
   }
 }
-
-Randomizer.propTypes = {
-  fetchRandomMeal: PropTypes.func.isRequired,
-  randomMeal: PropTypes.object,
-};
 
 const mapState = state => {
   return {

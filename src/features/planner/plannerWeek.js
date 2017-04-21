@@ -20,7 +20,7 @@ function renderDays(days) {
 }
 
 const PlannerWeek = ({ weekNumber, days }) => {
-  return(
+  return (
     <div className="planner-week">
       <h2 className="title is-3">Viikko {weekNumber}</h2>
 

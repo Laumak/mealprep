@@ -6,7 +6,7 @@ const propTypes = {
   children: PropTypes.any.isRequired,
 };
 
-const Loader = (props) => {
+const Loader = props => {
   return props.loading
     ? <p>Loading...</p>
     : props.children;

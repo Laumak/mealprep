@@ -31,7 +31,7 @@ const Hero = ({ subtitle, location }) => {
     }
   }
 
-  return(
+  return (
     <section className="hero is-primary is-bold">
       <div className="hero-body">
         <div className="container">

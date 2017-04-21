@@ -51,7 +51,7 @@ class Meals extends Component {
       );
     }
 
-    return(
+    return (
       <section>
         <div className="meals">
           { this.renderMeals() }
