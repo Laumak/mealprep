@@ -21,16 +21,19 @@ class CreateMeal extends Component {
 
   state = {
     loading: false,
-    title: "",
-    mealType: "",
-    url: "",
-    description: "",
+    meal: {
+      title: "",
+      mealType: "",
+      url: "",
+      description: "",
+    },
   }
 
   handleOnChange = e => {
-    const value = e.target.value;
+    const { value, name } = e.target;
+    const meal = Object.assign({}, this.state.meal, { [name]: value });
 
-    return this.setState({ [e.target.name]: value });
+    return this.setState({ meal });
   }
 
   handleOnSubmit = e => {
@@ -56,6 +59,7 @@ class CreateMeal extends Component {
   render() {
     return (
       <MealForm
+        meal={this.state.meal}
         loading={this.state.loading}
         handleOnChange={this.handleOnChange}
         handleOnSubmit={this.handleOnSubmit}
