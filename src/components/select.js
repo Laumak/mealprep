@@ -4,7 +4,10 @@ import PropTypes from "prop-types";
 const propTypes = {
   name: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,
-  value: PropTypes.number.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
   handleOnSelect: PropTypes.func.isRequired,
 };
 

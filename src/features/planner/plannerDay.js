@@ -6,6 +6,7 @@ import MealChooser from "./components/chooser";
 
 const propTypes = {
   day: PropTypes.shape({
+    id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     lunch: PropTypes.array,
     dinner: PropTypes.array,
@@ -22,13 +23,21 @@ const PlannerDay = props => {
             <div className="column is-half">
               <h3>Lunch</h3>
 
-              <MealChooser type="lunch" meal={props.day.lunch[0]} />
+              <MealChooser
+                type="lunch"
+                meal={props.day.lunch[0]}
+                dayID={props.day.id}
+              />
             </div>
 
             <div className="column">
               <h3>Dinner</h3>
 
-              <MealChooser type="dinner" meal={props.day.dinner[0]} />
+              <MealChooser
+                type="dinner"
+                meal={props.day.dinner[0]}
+                dayID={props.day.id}
+              />
             </div>
 
           </div>

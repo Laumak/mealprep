@@ -9,13 +9,19 @@ import Select from "../../../components/select";
 
 class MealChooser extends Component {
   static propTypes = {
-    type: PropTypes.string.isRequired,
+    dayID: PropTypes.number.isRequired,
     meal: PropTypes.object,
+    type: PropTypes.string.isRequired,
     saveDailyMeal: PropTypes.func.isRequired,
     allMeals: PropTypes.array,
   }
 
+  static defaultProps = {
+    meal: {},
+  }
+
   state = {
+    loading: false,
     chosenType: null,
     newLunch: {},
     newDinner: {},
@@ -27,7 +33,7 @@ class MealChooser extends Component {
     this.setState({ loading: true });
 
     const mealID = type === "lunch" ? this.state.newLunch.id : this.state.newDinner.id;
-    const dayID  = this.props.meal.pivot.day_id;
+    const dayID  = this.props.dayID;
 
     const payload = { type, dayID, mealID };
 
@@ -68,8 +74,10 @@ class MealChooser extends Component {
         !this.state.chosenType &&
         !this.state.loading &&
         this.props.meal &&
-        Object.keys(this.props.meal).length &&
-          <p>{this.props.meal.title}</p>
+        Object.keys(this.props.meal).length ?
+          <p>{this.props.meal.title}</p> :
+          !this.state.chosenType &&
+            <p>No meal chosen</p>
       }
       {
         !this.state.chosenType ?
@@ -98,7 +106,7 @@ class MealChooser extends Component {
                   name="meal"
                   options={this.props.allMeals}
                   handleOnSelect={this.handleMealSelect}
-                  value={meal.id}
+                  value={meal.id ? meal.id : ""}
                 /> :
                 <RandomMealChooser
                   loading={this.state.loading}
