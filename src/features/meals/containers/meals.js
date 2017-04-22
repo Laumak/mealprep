@@ -11,7 +11,6 @@ import Pagination from "../../../components/pagination";
 
 class Meals extends Component {
   static propTypes = {
-    fetchMeals: PropTypes.func.isRequired,
     meals: PropTypes.shape({
       data: PropTypes.array,
       prev_page_url: PropTypes.string,
@@ -25,20 +24,9 @@ class Meals extends Component {
     }),
   }
 
-  constructor(props) {
-    super(props);
-  }
-
   state = {
     loading: false,
   };
-
-  componentDidMount() {
-    this.setState({ loading: true });
-
-    this.props.fetchMeals()
-      .then(() => this.setState({ loading: false }));
-  }
 
   onHeaderClick = id => navigate(`/meal/${id}`, this.context);
 
@@ -83,16 +71,8 @@ class Meals extends Component {
   }
 }
 
-const mapState = state => {
-  return {
-    meals: state.selected.meals,
-  };
-};
+const mapState = state => ({
+  meals: state.selected.meals,
+});
 
-const mapDispatch = dispatch => {
-  return {
-    fetchMeals: () => dispatch(FetchMeals()),
-  };
-};
-
-export default connect(mapState, mapDispatch)(Meals);
+export default connect(mapState)(Meals);

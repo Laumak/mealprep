@@ -12,10 +12,11 @@ class MealChooser extends Component {
     type: PropTypes.string.isRequired,
     meal: PropTypes.object,
     saveDailyMeal: PropTypes.func.isRequired,
+    allMeals: PropTypes.array,
   }
 
   state = {
-    chosenType: "",
+    chosenType: null,
     newLunch: {},
     newDinner: {},
   }
@@ -31,8 +32,8 @@ class MealChooser extends Component {
     const payload = { type, dayID, mealID };
 
     this.props.saveDailyMeal(payload)
-      .then(() => this.setState({ newLunch: {}, newDinner: {}, chosenType: "" }))
-      .then(() => this.setState({ loading: true }));
+      .then(() => this.setState({ newLunch: {}, newDinner: {}, chosenType: null }))
+      .then(() => this.setState({ loading: false }));
   }
 
   handleMealChoosing = meal => {
@@ -41,6 +42,13 @@ class MealChooser extends Component {
     }
 
     return this.setState({ newDinner: meal });
+  }
+
+  handleMealSelect = e => {
+    const mealID = +e.target.value;
+    const meal = this.props.allMeals.filter(m => m.id === mealID)[0];
+
+    this.handleMealChoosing(meal);
   }
 
   render() {
@@ -57,7 +65,10 @@ class MealChooser extends Component {
     return (
       <div>
       {
-        !this.state.chosenType && this.props.meal && Object.keys(this.props.meal).length &&
+        !this.state.chosenType &&
+        !this.state.loading &&
+        this.props.meal &&
+        Object.keys(this.props.meal).length &&
           <p>{this.props.meal.title}</p>
       }
       {
@@ -83,8 +94,14 @@ class MealChooser extends Component {
           <div>
             {
               this.state.chosenType === "choose" ?
-                <Select /> :
+                <Select
+                  name="meal"
+                  options={this.props.allMeals}
+                  handleOnSelect={this.handleMealSelect}
+                  value={meal.id}
+                /> :
                 <RandomMealChooser
+                  loading={this.state.loading}
                   meal={meal}
                   handleMealChoosing={this.handleMealChoosing}
                 />
@@ -116,8 +133,12 @@ class MealChooser extends Component {
   }
 }
 
+const mapState = state => ({
+  allMeals: state.selected.meals.data,
+});
+
 const mapDispatch = dispatch => ({
   saveDailyMeal: props => dispatch(SaveDailyMeal(props)),
 });
 
-export default connect(null, mapDispatch)(MealChooser);
+export default connect(mapState, mapDispatch)(MealChooser);

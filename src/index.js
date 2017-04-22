@@ -6,9 +6,14 @@ import { BrowserRouter } from "react-router-dom";
 
 import configureStore from "./store/configureStore";
 
+import { FetchMeals } from "./features/meals/actions";
+
 import App from "./app";
 
 const store = configureStore();
+
+store.dispatch(FetchMeals());
+
 const appEl = document.getElementById("app");
 
 ReactDOM.render(

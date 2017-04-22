@@ -2,7 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const propTypes = {
-  // options: PropTypes.array.isRequired,
+  name: PropTypes.string.isRequired,
+  options: PropTypes.array.isRequired,
+  value: PropTypes.number.isRequired,
+  handleOnSelect: PropTypes.func.isRequired,
+};
+
+const renderOptions = options => {
+  return options.map(option =>
+    <option value={option.id} key={option.id}>{option.title}</option>
+  );
 };
 
 const SelectComponent = props => {
@@ -10,9 +19,13 @@ const SelectComponent = props => {
     <div className="field">
       <div className="control">
         <span className="select is-fullwidth">
-          <select name="meal" id="meal">
-            <option value="meal1">Meal 1</option>
-            <option value="meal2">Meal 2</option>
+          <select
+            name={props.name}
+            id={props.name}
+            value={props.value}
+            onChange={props.handleOnSelect}
+          >
+            { renderOptions(props.options) }
           </select>
         </span>
       </div>
