@@ -33,7 +33,7 @@ class Randomizer extends Component {
   generateMeal = () => {
     this.setState({ loading: true, noResults: false });
 
-    this.props.fetchRandomMeal(this.state.mealType)
+    this.props.fetchRandomMeal({ type: this.state.mealType })
       .then(() =>
         this.setState({ mealVisible: true, loading: false })
       )
@@ -120,7 +120,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    fetchRandomMeal: mealType => dispatch(FetchRandomMeal(mealType)),
+    fetchRandomMeal: props => dispatch(FetchRandomMeal(props)),
   };
 };
 

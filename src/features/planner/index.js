@@ -1,2 +1,2 @@
-import Planner from "./planner";
+import Planner from "./plannerWeek";
 export default Planner;

@@ -1,67 +1,43 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import Card        from "../../components/card";
 import MealChooser from "./components/chooser";
 
-class PlannerDay extends Component {
-  static propTypes = {
-    day: PropTypes.string,
-    lunch: PropTypes.string,
-    dinner: PropTypes.string,
-  }
+const propTypes = {
+  day: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    lunch: PropTypes.array,
+    dinner: PropTypes.array,
+  }),
+};
 
-  state = {
-    chosenLunch: "",
-    chosenDinner: "",
-  }
+const PlannerDay = props => {
+  return (
+    <article className="day column is-half">
+      <Card title={props.day.name}>
+        <div className="content">
+          <div className="columns">
 
-  handleTypeChoosing = (type, bmeal) => {
-    if(type === "lunch") {
-      if(bmeal) {
-        return this.setState({ chosenLunch: bmeal });
-      }
+            <div className="column is-half">
+              <h3>Lunch</h3>
 
-      this.setState({ chosenLunch: "" });
-    }
-
-    if(type === "dinner") {
-      if(bmeal) {
-        return this.setState({ chosenDinner: bmeal });
-      }
-      this.setState({ chosenDinner: "" });
-    }
-  }
-
-  render() {
-    return (
-      <article className="day column is-half">
-        <Card title={this.props.day}>
-          <div className="content">
-            <div className="columns">
-              <div className="column is-half">
-                <h3>Lounas</h3>
-                <MealChooser
-                  type="lunch"
-                  chosenType={this.state.chosenLunch}
-                  handleTypeChoosing={this.handleTypeChoosing}
-                />
-              </div>
-
-              <div className="column">
-                <h3>Päivällinen</h3>
-                <MealChooser
-                  type="dinner"
-                  chosenType={this.state.chosenDinner}
-                  handleTypeChoosing={this.handleTypeChoosing}
-                />
-              </div>
+              <MealChooser type="lunch" meal={props.day.lunch[0]} />
             </div>
+
+            <div className="column">
+              <h3>Dinner</h3>
+
+              <MealChooser type="dinner" meal={props.day.dinner[0]} />
+            </div>
+
           </div>
-        </Card>
-      </article>
-    );
-  }
-}
+        </div>
+      </Card>
+    </article>
+  );
+};
+
+PlannerDay.propTypes = propTypes;
 
 export default PlannerDay;
