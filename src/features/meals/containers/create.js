@@ -41,14 +41,7 @@ class CreateMeal extends Component {
 
     this.setState({ loading: true });
 
-    const meal = {
-      title: this.state.title,
-      type: this.state.mealType,
-      url: this.state.url,
-      description: this.state.description,
-    };
-
-    this.props.storeMeal(meal)
+    this.props.storeMeal(this.state.meal)
       .then(({ data: { meal }}) => {
         this.setState({ loading: false });
 
