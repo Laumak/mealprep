@@ -57,6 +57,7 @@ class ShowMeal extends Component {
           title={this.props.meal.title}
           id={this.props.meal.id}
           onHeaderClick={this.onHeaderClick}
+          headerButtonText="Edit"
         >
           <p><b>Type:</b> {this.props.meal.type}</p>
           <div>

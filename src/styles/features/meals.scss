@@ -3,3 +3,10 @@
     margin-bottom: 15px;
   }
 }
+
+.meal {
+  p.card-header-title {
+    display: flex;
+    justify-content: space-between;
+  }
+}
