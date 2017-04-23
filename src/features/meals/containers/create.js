@@ -42,7 +42,7 @@ class CreateMeal extends Component {
     this.setState({ loading: true });
 
     this.props.storeMeal(this.state.meal)
-      .then(({ data: { meal }}) => {
+      .then(meal => {
         this.setState({ loading: false });
 
         return navigate(`/meal/${meal.id}`, this.context);

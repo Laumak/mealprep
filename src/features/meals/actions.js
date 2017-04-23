@@ -35,8 +35,13 @@ export const FetchMeal = id => dispatch => {
     });
 };
 
-export const StoreMeal = meal => () => {
-  return axios.post(`${baseUrl}/meals`, meal);
+export const StoreMeal = meal => dispatch => {
+  return axios.post(`${baseUrl}/meals`, meal)
+    .then(resp => {
+      dispatch(FetchMeals());
+
+      return resp.data.meal;
+    });
 };
 
 export const EditMeal = meal => dispatch => {
