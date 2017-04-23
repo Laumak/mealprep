@@ -14,6 +14,7 @@ class Meals extends Component {
       prev_page_url: PropTypes.string,
       next_page_url: PropTypes.string,
     }).isRequired,
+    loading: PropTypes.bool.isRequired,
   }
 
   static contextTypes = {
@@ -60,8 +61,8 @@ class Meals extends Component {
         </div>
 
         <Pagination
-          prevPageUrl={this.props.meals.prev_page_url}
           nextPageUrl={this.props.meals.next_page_url}
+          loading={this.props.loading}
         />
       </section>
 
@@ -71,6 +72,7 @@ class Meals extends Component {
 
 const mapState = state => ({
   meals: state.selected.meals,
+  loading: state.selected.loading,
 });
 
 export default connect(mapState)(Meals);

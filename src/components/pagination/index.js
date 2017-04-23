@@ -1,46 +1,47 @@
 import React from "react";
 import PropTypes  from "prop-types";
 import { connect } from "react-redux";
+import classNames from "classnames";
 
 import { ChangePage } from "./actions";
 
 const propTypes = {
   changePage: PropTypes.func.isRequired,
-  prevPageUrl: PropTypes.string,
   nextPageUrl: PropTypes.string,
+  loading: PropTypes.bool,
+};
+
+const defaultProps = {
+  loading: false,
 };
 
 const Pagination = props => {
-  const prevPage = () => props.changePage(props.prevPageUrl);
   const nextPage = () => props.changePage(props.nextPageUrl);
+
+  const buttonClasses = classNames({
+    button: true,
+    "is-primary": true,
+    "is-loading": props.loading,
+  });
 
   return (
     <nav className="pagination is-centered">
-      <a
-        className="pagination-previous"
-        onClick={prevPage}
-        disabled={!props.prevPageUrl}
-      >
-        Previous
-      </a>
-
-      <a
-        className="pagination-next"
+      <button
+        className={buttonClasses}
         onClick={nextPage}
         disabled={!props.nextPageUrl}
       >
-        Next
-      </a>
+        Load more meals
+      </button>
     </nav>
   );
 };
 
-Pagination.propTypes = propTypes;
+Pagination.propTypes    = propTypes;
+Pagination.defaultProps = defaultProps;
 
-const mapDispatch = dispatch => {
-  return {
-    changePage: (url) => dispatch(ChangePage(url)),
-  };
-};
+const mapDispatch = dispatch => ({
+  changePage: url => dispatch(ChangePage(url)),
+});
 
 export default connect(null, mapDispatch)(Pagination);

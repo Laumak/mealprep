@@ -28,13 +28,13 @@ ReactDOM.render(
 
 if(module.hot) {
   module.hot.accept("./app", () => {
-    require("./app");
+    const NextApp = require("./app").default;
 
     ReactDOM.render(
       <AppContainer>
         <Provider store={store}>
           <BrowserRouter>
-            <App />
+            <NextApp />
           </BrowserRouter>
         </Provider>
       </AppContainer>, appEl
