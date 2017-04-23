@@ -47,14 +47,16 @@ export const StoreMeal = meal => dispatch => {
 export const EditMeal = meal => dispatch => {
   return axios.put(`${baseUrl}/meals/${meal.id}`, { meal })
     .then(resp => {
-      dispatch({ type: "EDIT_MEAL_SUCCESS", payload: resp.data.meal });
+      dispatch(FetchMeals());
 
       return resp.data.meal;
     })
     .catch(error => {
-      return dispatch({
+      dispatch({
         type: "EDIT_MEAL_FAIL",
         payload: error,
       });
+
+      return error;
     });
 };
