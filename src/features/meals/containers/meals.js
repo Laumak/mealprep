@@ -13,6 +13,7 @@ class Meals extends Component {
       data: PropTypes.array,
       prev_page_url: PropTypes.string,
       next_page_url: PropTypes.string,
+      total: PropTypes.number,
     }).isRequired,
     loading: PropTypes.bool.isRequired,
   }
@@ -56,14 +57,27 @@ class Meals extends Component {
 
     return (
       <section>
-        <div className="meals">
-          { this.renderMeals() }
-        </div>
+        {
+          this.props.meals.data.length ?
+            <div className="meals">
+              { this.renderMeals() }
 
-        <Pagination
-          nextPageUrl={this.props.meals.next_page_url}
-          loading={this.props.loading}
-        />
+              {
+                this.props.meals.total > 10 &&
+                  <Pagination
+                    nextPageUrl={this.props.meals.next_page_url}
+                    loading={this.props.loading}
+                  />
+              }
+            </div> :
+            <div className="content">
+              <p>No meals found.</p>
+
+              <button className="button is-success" onClick={() => navigate(`/meal/create`, this.context)}>
+                Create a meal
+              </button>
+            </div>
+        }
       </section>
 
     );
