@@ -8,8 +8,10 @@ const propTypes = {
   meal: PropTypes.object,
   loading: PropTypes.bool.isRequired,
   submitButtonText: PropTypes.string,
+  deleteButtonText: PropTypes.string,
   handleOnChange: PropTypes.func.isRequired,
   handleOnSubmit: PropTypes.func.isRequired,
+  handleOnDelete: PropTypes.func,
 };
 
 const defaultProps = {
@@ -30,9 +32,15 @@ const options = [
 ];
 
 const MealForm = props => {
-  const buttonClasses = classNames({
+  const submitButtonClasses = classNames({
     button: true,
     "is-success": true,
+    "is-loading": props.loading,
+  });
+
+  const deleteButtonClasses = classNames({
+    button: true,
+    "is-danger": true,
     "is-loading": props.loading,
   });
 
@@ -87,9 +95,20 @@ const MealForm = props => {
           </p>
         </div>
 
-        <button className={buttonClasses} disabled={props.loading}>
+        <button className={submitButtonClasses} disabled={props.loading}>
          {props.submitButtonText}
         </button>
+        {
+          props.handleOnDelete &&
+            <button
+              className={deleteButtonClasses}
+              disabled={props.loading}
+              onClick={e => props.handleOnDelete(e, props.meal.id)}
+              style={{ marginLeft: 10 }}
+            >
+              {props.deleteButtonText}
+            </button>
+        }
       </form>
     </div>
   );

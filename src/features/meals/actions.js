@@ -60,3 +60,18 @@ export const EditMeal = meal => dispatch => {
       return error;
     });
 };
+
+export const DeleteMeal = id => dispatch => {
+  return axios.delete(`${baseUrl}/meals/${id}`)
+    .then(resp => {
+      dispatch(FetchMeals());
+
+      return resp.data.meal;
+    })
+    .catch(error => {
+      return dispatch({
+        type: "DELETE_MEAL_FAIL",
+        payload: error,
+      });
+    });
+};

@@ -4,15 +4,15 @@ import { connect } from "react-redux";
 
 import navigate from "../../../utils/navigate";
 
-import { EditMeal as EditMealAction, FetchMeal } from "../actions";
+import { EditMeal as EditMealAction, FetchMeal, DeleteMeal } from "../actions";
 
 import MealForm from "../components/mealForm";
-
 
 class EditMeal extends Component {
   static propTypes = {
     editMeal: PropTypes.func.isRequired,
     fetchMeal: PropTypes.func.isRequired,
+    deleteMeal: PropTypes.func.isRequired,
     match: PropTypes.object,
   }
 
@@ -60,14 +60,29 @@ class EditMeal extends Component {
       });
   }
 
+  handleOnDelete = (e, id) => {
+    e.preventDefault();
+
+    this.setState({ loading: true });
+
+    this.props.deleteMeal(id)
+      .then(() => {
+        this.setState({ loading: false });
+
+        return navigate(`/meals`, this.context);
+      });
+  }
+
   render() {
     return (
       <MealForm
         meal={this.state.meal}
         loading={this.state.loading}
         submitButtonText="Edit"
+        deleteButtonText="Delete"
         handleOnChange={this.handleOnChange}
         handleOnSubmit={this.handleOnSubmit}
+        handleOnDelete={this.handleOnDelete}
       />
     );
   }
@@ -80,6 +95,7 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   editMeal: meal => dispatch(EditMealAction(meal)),
   fetchMeal: id => dispatch(FetchMeal(id)),
+  deleteMeal: id => dispatch(DeleteMeal(id)),
 });
 
 export default connect(mapState, mapDispatch)(EditMeal);
