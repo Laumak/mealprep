@@ -14,15 +14,17 @@ class Card extends Component {
     onHeaderClick: PropTypes.func,
     headerButtonText: PropTypes.string,
     toggleable: PropTypes.bool,
+    open: PropTypes.bool,
   }
 
   static defaultProps = {
     title: "Loading...",
     toggleable: false,
+    open: true,
   }
 
   state = {
-    open: true,
+    open: this.props.open,
   }
 
   toggleCardContent = e => {

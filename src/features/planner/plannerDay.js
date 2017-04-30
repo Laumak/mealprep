@@ -11,12 +11,13 @@ const propTypes = {
     lunch: PropTypes.array,
     dinner: PropTypes.array,
   }),
+  open: PropTypes.bool.isRequired,
 }
 
 const PlannerDay = props => {
   return (
     <article className="day column is-half">
-      <Card title={props.day.name} toggleable={true}>
+      <Card title={props.day.name} toggleable={true} open={props.open}>
         <div className="content">
           <div className="columns is-desktop">
 
