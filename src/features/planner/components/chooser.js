@@ -87,7 +87,7 @@ class MealChooser extends Component {
                 className="button is-small"
                 onClick={() => this.handleTypeChoosing("choose")}
               >
-                Choose a meal
+                <span>Choose</span>
               </a>
             </div>
             <div className="control">
@@ -95,7 +95,7 @@ class MealChooser extends Component {
                 className="button is-success is-small"
                 onClick={() => this.handleTypeChoosing("random")}
               >
-                Random meal
+                <span>Random</span>
               </a>
             </div>
           </div> :

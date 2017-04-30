@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react"
+import PropTypes from "prop-types"
 
 const propTypes = {
   initialWeek: PropTypes.shape({
@@ -7,27 +8,32 @@ const propTypes = {
   goToWeek: PropTypes.func.isRequired,
 };
 
-const WeekNavigation = props => {
-  return (
-    <nav className="level">
-      <div className="level-item has-text-centered">
-        <div>
-          <a className="title" onClick={() => props.goToWeek("prev")}>Week {props.initialWeek.number - 1}</a>
-        </div>
+const WeekNavigation = props =>
+  <nav className="level">
+    <div className="level-item has-text-centered">
+      <div>
+        <a className="link" onClick={() => props.goToWeek("prev")}>
+          Week {props.initialWeek.number - 1}
+        </a>
       </div>
-      <div className="level-item has-text-centered current">
-        <div>
-          <span className="title">Week {props.initialWeek.number}</span>
-        </div>
+    </div>
+
+    <div className="level-item has-text-centered current">
+      <div>
+        <span className="link">
+          Week {props.initialWeek.number}
+        </span>
       </div>
-      <div className="level-item has-text-centered">
-        <div>
-          <a className="title" onClick={() => props.goToWeek("next")}>Week {props.initialWeek.number + 1}</a>
-        </div>
+    </div>
+
+    <div className="level-item has-text-centered">
+      <div>
+        <a className="link" onClick={() => props.goToWeek("next")}>
+          Week {props.initialWeek.number + 1}
+        </a>
       </div>
-    </nav>
-  );
-};
+    </div>
+  </nav>
 
 WeekNavigation.propTypes = propTypes;
 

@@ -3,3 +3,11 @@
     border-bottom: 1px solid #c0c0c0;
   }
 }
+
+nav.level {
+  position: relative;
+
+  .link {
+    font-size: 1.6rem;
+  }
+}
