@@ -42,7 +42,7 @@ class MealChooser extends Component {
       .then(() => this.setState({ loading: false }));
   }
 
-  handleMealChoosing = meal => {
+  handleTypeMealChoosing = meal => {
     if(this.props.type === "lunch") {
       return this.setState({ newLunch: meal });
     }
@@ -54,7 +54,7 @@ class MealChooser extends Component {
     const mealID = +e.target.value;
     const meal = this.props.allMeals.filter(m => m.id === mealID)[0];
 
-    this.handleMealChoosing(meal);
+    this.handleTypeMealChoosing(meal);
   }
 
   render() {
@@ -111,7 +111,7 @@ class MealChooser extends Component {
                 <RandomMealChooser
                   loading={this.state.loading}
                   meal={meal}
-                  handleMealChoosing={this.handleMealChoosing}
+                  handleMealChoosing={this.handleTypeMealChoosing}
                 />
             }
 

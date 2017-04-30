@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
   routing: routerReducer,
   selected: SelectedMealReducer,
   random: RandomMealReducer,
-  week: WeekReducer,
+  weeks: WeekReducer,
 });
 
 export default rootReducer;

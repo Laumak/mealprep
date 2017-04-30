@@ -28,7 +28,7 @@
     "no-mixed-spaces-and-tabs": "error",
     "no-trailing-spaces": "warn",
     "quotes": ["warn", "double", { "allowTemplateLiterals": true }],
-    "semi": ["warn", "always"],
+    "semi": 0,
 
     "react/prefer-es6-class": "warn",
     "react/prefer-stateless-function": "warn",

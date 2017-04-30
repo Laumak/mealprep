@@ -31,29 +31,29 @@ const links = [
   },
 ];
 
-const App = () => {
-  return (
-    <div>
-      <Nav title="Meal Prep" links={links} />
+const App = () =>
+  <div>
+    <Nav title="Meal Prep" links={links} />
 
-      <Route path="/" component={Hero}></Route>
+    <Route path="/" component={Hero}></Route>
 
-      <section className="section main-content">
-        <div className="container">
-          <Route path="/" exact component={Home} />
+    <section className="section main-content">
+      <div className="container">
+        <Route path="/" exact component={Home} />
 
-          <Route path="/randomizer" component={Randomizer} />
-          <Route path="/planner" component={Planner} />
-          <Route path="/meals" component={Meals} />
-          <Switch>
-            <Route path="/meal/create" component={CreateMeal} />
-            <Route path="/meal/:id/edit" component={EditMeal} />
-            <Route path="/meal/:id" component={ShowMeal} />
-          </Switch>
-        </div>
-      </section>
-    </div>
-  );
-};
+        <Route path="/randomizer" component={Randomizer} />
+        <Route path="/meals" component={Meals} />
 
-export default App;
+        <Route path="/planner" exact component={Planner} />
+        <Route path="/planner/:number/:year?" component={Planner} />
+
+        <Switch>
+          <Route path="/meal/create" component={CreateMeal} />
+          <Route path="/meal/:id/edit" component={EditMeal} />
+          <Route path="/meal/:id" component={ShowMeal} />
+        </Switch>
+      </div>
+    </section>
+  </div>
+
+export default App

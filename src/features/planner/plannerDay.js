@@ -18,9 +18,9 @@ const PlannerDay = props => {
     <article className="day column is-half">
       <Card title={props.day.name}>
         <div className="content">
-          <div className="columns">
+          <div className="columns is-desktop">
 
-            <div className="column is-half">
+            <div className="column is-half-desktop">
               <h3>Lunch</h3>
 
               <MealChooser
@@ -30,7 +30,7 @@ const PlannerDay = props => {
               />
             </div>
 
-            <div className="column">
+            <div className="column is-half-desktop">
               <h3>Dinner</h3>
 
               <MealChooser
