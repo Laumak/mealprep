@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import React, { Component } from "react"
+import PropTypes from "prop-types"
+import { connect } from "react-redux"
 
-import { FetchCurrentWeek, FetchWeek, GoToWeek } from "./actions";
+import { FetchCurrentWeek, FetchWeek, GoToWeek } from "./actions"
 
-import PlannerDay from "./plannerDay";
-import WeekNavigation from "./components/weekNavigation";
+import PlannerDay from "./plannerDay"
+import WeekNavigation from "./components/weekNavigation"
 
 class PlannerWeek extends Component {
   static propTypes = {
@@ -20,40 +20,42 @@ class PlannerWeek extends Component {
   }
 
   componentDidMount() {
-    const weekNumber = this.props.match.params.number;
-    const year       = this.props.match.params.year;
+    const weekNumber = this.props.match.params.number
+    const year       = this.props.match.params.year
 
     if(!weekNumber) {
-      return this.props.fetchCurrentWeek();
+      return this.props.fetchCurrentWeek()
     }
 
-    this.props.fetchWeek(weekNumber, year);
+    this.props.fetchWeek(weekNumber, year)
   }
 
   handleOnGoToWeek = type => {
-    const { router: { history } } = this.context;
+    const { router: { history } } = this.context
 
-    let num;
-    const year = this.props.match.params.year;
+    let num
+    const year = this.props.match.params.year
 
     if(type === "prev") {
-      num = this.props.currentWeek.number - 1;
+      num = this.props.currentWeek.number - 1
     }
 
     if(type === "next") {
-      num = this.props.currentWeek.number + 1;
+      num = this.props.currentWeek.number + 1
     }
 
     return this.props.fetchWeek(num, year)
-      .then(() => history.push(`/planner/${num}`));
+      .then(() => history.push(`/planner/${num}`))
   }
 
   renderDays = days => {
-    return days.map(day => <PlannerDay day={day} key={day.id} />);
+    return days.map(day =>
+      <PlannerDay day={day} key={day.id} />
+    )
   }
 
   render() {
-    const { currentWeek } = this.props;
+    const { currentWeek } = this.props
 
     return (
       <div className="planner">
@@ -74,19 +76,19 @@ class PlannerWeek extends Component {
           }
         </div>
       </div>
-    );
+    )
   }
 }
 
 const mapState = state => ({
   currentWeek: state.weeks.current,
   weeks: state.weeks.all,
-});
+})
 
 const mapDispatch = dispatch => ({
   fetchCurrentWeek: () => dispatch(FetchCurrentWeek()),
   fetchWeek: (number, year) => dispatch(FetchWeek(number, year)),
   goToWeek: number => dispatch(GoToWeek(number)),
-});
+})
 
-export default connect(mapState, mapDispatch)(PlannerWeek);
+export default connect(mapState, mapDispatch)(PlannerWeek)
