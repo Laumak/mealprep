@@ -49,9 +49,7 @@ class PlannerWeek extends Component {
   }
 
   renderDays = days => {
-    return days.map(day =>
-      <PlannerDay day={day} key={day.id} />
-    );
+    return days.map(day => <PlannerDay day={day} key={day.id} />);
   }
 
   render() {
@@ -59,15 +57,15 @@ class PlannerWeek extends Component {
 
     return (
       <div className="planner">
-        <div className="planner-week">
-          {
-            currentWeek.number &&
-              <WeekNavigation
-                initialWeek={currentWeek}
-                goToWeek={this.handleOnGoToWeek}
-              />
-          }
+        {
+          currentWeek.number &&
+            <WeekNavigation
+              initialWeek={currentWeek}
+              goToWeek={this.handleOnGoToWeek}
+            />
+        }
 
+        <div className="planner-week">
           {
             !!currentWeek.days.length &&
               <div className="columns is-multiline">
