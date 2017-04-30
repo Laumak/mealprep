@@ -66,8 +66,8 @@ class Randomizer extends Component {
     ];
 
     return (
-      <div>
-        <div className="generator" style={{ marginBottom: 20 }}>
+      <div className="randomizer">
+        <div className="generator">
           <RadioGroup
             options={options}
             onChange={this.handleOnRadioChange}
