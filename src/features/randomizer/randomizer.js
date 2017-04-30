@@ -68,11 +68,23 @@ class Randomizer extends Component {
     return (
       <div className="randomizer">
         <div className="generator">
-          <RadioGroup
-            options={options}
-            onChange={this.handleOnRadioChange}
-            selectedValue={this.state.mealType}
-          />
+          <div className="options">
+            <RadioGroup
+              options={options}
+              onChange={this.handleOnRadioChange}
+              selectedValue={this.state.mealType}
+            />
+
+            {
+              !!this.state.mealType &&
+                <button
+                  className="button is-danger clear-selection"
+                  onClick={() => this.setState({ mealType: null })}
+                >
+                  Clear
+                </button>
+            }
+          </div>
 
           <LoadingButton
             className="button is-success is-large is-fullwidth"
