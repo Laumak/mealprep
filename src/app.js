@@ -6,7 +6,6 @@ import "../node_modules/font-awesome/css/font-awesome.css";
 import Nav from "./components/nav";
 import Hero from "./components/hero";
 
-import Home       from "./features/home";
 import Planner    from "./features/planner";
 import Randomizer from "./features/randomizer";
 
