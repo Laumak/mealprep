@@ -1,30 +1,39 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
+import React, { Component } from "react"
+import PropTypes from "prop-types"
+import classNames from "classnames"
 
-const propTypes = {
-  title: PropTypes.string,
-  id:    PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]),
-  children: PropTypes.any,
-  className: PropTypes.string,
-  onHeaderClick: PropTypes.func,
-  headerButtonText: PropTypes.string,
-};
+class Card extends Component {
+  static propTypes = {
+    title: PropTypes.string,
+    id: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
+    children: PropTypes.any,
+    className: PropTypes.string,
+    onHeaderClick: PropTypes.func,
+    headerButtonText: PropTypes.string,
+    toggleable: PropTypes.bool,
+  }
 
-const Card = ({
-  title = "Loading...",
-  id, children, className,
-  onHeaderClick, headerButtonText,
-}) => {
-  const cardClasses = classNames({
-    card: true,
-    [className]: !!className,
-  });
+  static defaultProps = {
+    title: "Loading...",
+    toggleable: false,
+  }
 
-  const renderHeaderContent = () => {
+  state = {
+    open: true,
+  }
+
+  toggleCardContent = e => {
+    e.stopPropagation();
+
+    this.setState({ open: !this.state.open })
+  }
+
+  renderHeaderContent = () => {
+    const { title, id, onHeaderClick, headerButtonText } = this.props
+
     // Header has a clickable button
     if(onHeaderClick && headerButtonText) {
       return (
@@ -57,19 +66,44 @@ const Card = ({
     )
   }
 
-  return (
-    <div className={cardClasses}>
-      <header className="card-header">
-        { renderHeaderContent() }
-      </header>
+  render() {
+    const cardClasses = classNames({
+      card: true,
+      closed: !this.state.open,
+      [this.props.className]: !!this.props.className,
+    })
 
-      <div className="card-content">
-        {children}
+    const chevronClasses = classNames({
+      fa: true,
+      "fa-angle-down": !this.state.open,
+      "fa-angle-up": this.state.open,
+    })
+
+    return (
+      <div className={cardClasses}>
+        <header className="card-header">
+          { this.renderHeaderContent() }
+
+          {
+            this.props.toggleable &&
+              <a className="card-header-icon" onClick={e => this.toggleCardContent(e)}>
+                <span className="icon">
+                  <i className={chevronClasses}></i>
+                </span>
+              </a>
+          }
+        </header>
+
+        {
+          this.state.open &&
+            <div className="card-content">
+              {this.props.children}
+            </div>
+        }
+
       </div>
-    </div>
-  );
-};
+    )
+  }
+}
 
-Card.propTypes = propTypes;
-
-export default Card;
+export default Card

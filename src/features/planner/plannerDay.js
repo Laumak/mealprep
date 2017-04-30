@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from "react"
+import PropTypes from "prop-types"
 
-import Card        from "../../components/card";
-import MealChooser from "./components/chooser";
+import Card        from "../../components/card"
+import MealChooser from "./components/chooser"
 
 const propTypes = {
   day: PropTypes.shape({
@@ -11,12 +11,12 @@ const propTypes = {
     lunch: PropTypes.array,
     dinner: PropTypes.array,
   }),
-};
+}
 
 const PlannerDay = props => {
   return (
     <article className="day column is-half">
-      <Card title={props.day.name}>
+      <Card title={props.day.name} toggleable={true}>
         <div className="content">
           <div className="columns is-desktop">
 
@@ -44,9 +44,9 @@ const PlannerDay = props => {
         </div>
       </Card>
     </article>
-  );
-};
+  )
+}
 
-PlannerDay.propTypes = propTypes;
+PlannerDay.propTypes = propTypes
 
-export default PlannerDay;
+export default PlannerDay
