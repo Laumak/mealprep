@@ -39,7 +39,7 @@ const App = () =>
 
     <section className="section main-content">
       <div className="container">
-        <Route path="/" exact component={Home} />
+        <Route path="/" exact component={Planner} />
 
         <Route path="/randomizer" component={Randomizer} />
         <Route path="/meals" component={Meals} />
