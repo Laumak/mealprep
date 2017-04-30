@@ -14,31 +14,53 @@ const propTypes = {
   headerButtonText: PropTypes.string,
 };
 
-const Card = ({ title = "Loading...", id, children, className, onHeaderClick, headerButtonText }) => {
+const Card = ({
+  title = "Loading...",
+  id, children, className,
+  onHeaderClick, headerButtonText,
+}) => {
   const cardClasses = classNames({
     card: true,
     [className]: !!className,
   });
 
+  const renderHeaderContent = () => {
+    // Header has a clickable button
+    if(onHeaderClick && headerButtonText) {
+      return (
+        <p className="card-header-title">
+          <span>{ title }</span>
+
+          <button
+            className="button is-warning is-small"
+            onClick={() => onHeaderClick(id)}
+          >
+            {headerButtonText}
+          </button>
+        </p>
+      )
+    }
+
+    // Header itself is clickable
+    if(onHeaderClick) {
+      return (
+        <a className="card-header-title" onClick={() => onHeaderClick(id)}>
+          { title }
+        </a>
+      )
+    }
+
+    return (
+      <p className="card-header-title">
+        <span>{ title }</span>
+      </p>
+    )
+  }
+
   return (
     <div className={cardClasses}>
       <header className="card-header">
-        {
-          onHeaderClick && headerButtonText ?
-            <p className="card-header-title">
-              <span>{ title }</span>
-
-              <button
-                className="button is-warning is-small"
-                onClick={() => onHeaderClick(id)}
-              >
-                {headerButtonText}
-              </button>
-            </p> :
-            <a className="card-header-title" onClick={() => onHeaderClick(id)}>
-              { title }
-            </a>
-          }
+        { renderHeaderContent() }
       </header>
 
       <div className="card-content">
