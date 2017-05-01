@@ -1,8 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-import Card        from "../../components/card"
-import MealChooser from "./components/chooser"
+import Card        from "../../../components/card"
+import MealChooser from "./chooser"
 
 const propTypes = {
   day: PropTypes.shape({
