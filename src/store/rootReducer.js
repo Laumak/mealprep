@@ -1,15 +1,13 @@
-import { combineReducers } from "redux";
-import { routerReducer } from "react-router-redux";
+import { combineReducers } from "redux"
+import { routerReducer } from "react-router-redux"
 
-import SelectedMealReducer from "../features/meals/reducer";
-import RandomMealReducer from "../features/randomizer/reducer";
-import WeekReducer from "../features/planner/reducer";
+import meals from "../features/meals/reducer"
+import weeks from "../features/planner/reducer"
 
 const rootReducer = combineReducers({
   routing: routerReducer,
-  selected: SelectedMealReducer,
-  random: RandomMealReducer,
-  weeks: WeekReducer,
-});
+  meals,
+  weeks,
+})
 
-export default rootReducer;
+export default rootReducer

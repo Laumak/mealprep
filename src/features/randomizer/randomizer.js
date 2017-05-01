@@ -124,16 +124,12 @@ class Randomizer extends Component {
   }
 }
 
-const mapState = state => {
-  return {
-    randomMeal: state.random.meal,
-  };
-};
+const mapState = state => ({
+  randomMeal: state.meals.random,
+})
 
-const mapDispatch = dispatch => {
-  return {
-    fetchRandomMeal: props => dispatch(FetchRandomMeal(props)),
-  };
-};
+const mapDispatch = dispatch => ({
+  fetchRandomMeal: props => dispatch(FetchRandomMeal(props)),
+})
 
 export default connect(mapState, mapDispatch)(Randomizer);
