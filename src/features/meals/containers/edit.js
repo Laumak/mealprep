@@ -42,7 +42,7 @@ class EditMeal extends Component {
   handleOnChange = e => {
     const { value, name } = e.target;
 
-    const meal = Object.assign({}, this.state.meal, { [name]: value });
+    const meal = { ...this.state.meal, [name]: value };
 
     return this.setState({ meal });
   }
@@ -53,7 +53,7 @@ class EditMeal extends Component {
     this.setState({ loading: true });
 
     this.props.editMeal(this.state.meal)
-      .then((meal) => {
+      .then(meal => {
         this.setState({ loading: false });
 
         return navigate(`/meal/${meal.id}`, this.context);
@@ -69,7 +69,7 @@ class EditMeal extends Component {
       .then(() => {
         this.setState({ loading: false });
 
-        return navigate(`/meals`, this.context);
+        return navigate("/meals", this.context);
       });
   }
 
@@ -78,7 +78,7 @@ class EditMeal extends Component {
       <MealForm
         meal={this.state.meal}
         loading={this.state.loading}
-        submitButtonText="Edit"
+        submitButtonText="Save"
         deleteButtonText="Delete"
         handleOnChange={this.handleOnChange}
         handleOnSubmit={this.handleOnSubmit}
@@ -89,7 +89,7 @@ class EditMeal extends Component {
 }
 
 const mapState = state => ({
-  meal: state.selected.meal,
+  meal: state.meals.selected,
 });
 
 const mapDispatch = dispatch => ({

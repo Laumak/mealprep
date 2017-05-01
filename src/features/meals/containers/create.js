@@ -31,7 +31,7 @@ class CreateMeal extends Component {
 
   handleOnChange = e => {
     const { value, name } = e.target;
-    const meal = Object.assign({}, this.state.meal, { [name]: value });
+    const meal = { ...this.state.meal, [name]: value };
 
     return this.setState({ meal });
   }

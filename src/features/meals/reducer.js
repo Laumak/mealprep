@@ -1,22 +1,26 @@
 const initialState = {
-  meal: {},
-  meals: {
+  selected: {},
+  random: {},
+  all: {
     data: [],
   },
-  error: null,
   loading: false,
+  error: null,
 };
 
-const SelectedMealReducer = (state = initialState, { type, payload }) => {
+const MealsReducer = (state = initialState, { type, payload }) => {
   switch(type) {
+    // All meals
     case "FETCH_MEALS_SUCCESS": {
-      return Object.assign({}, state, { meals: payload });
+      return { ...state, all: payload };
     }
+
+    // All meals - pagination
     case "FETCH_MORE_MEALS": {
       return { ...state, loading: true };
     }
     case "FETCH_MORE_MEALS_SUCCESS": {
-      const meals = state.meals.data.concat(payload.data);
+      const meals = state.all.data.concat(payload.data);
 
       return {
         ...state,
@@ -27,16 +31,27 @@ const SelectedMealReducer = (state = initialState, { type, payload }) => {
         loading: false,
       };
     }
+
+    // Selected meal
     case "FETCH_MEAL_SUCCESS": {
-      return Object.assign({}, state, { meal: payload });
+      return { ...state, selected: payload };
     }
     case "FETCH_MEAL_FAIL": {
-      return Object.assign({}, state, { error: payload });
+      return { ...state, error: payload };
     }
+
+    // Random meal
+    case "FETCH_RANDOM_MEAL_SUCCESS": {
+      return { ...state, random: payload };
+    }
+    case "FETCH_RANDOM_MEAL_FAIL": {
+      return { state, error: payload };
+    }
+
     default: {
       return state;
     }
   }
 };
 
-export default SelectedMealReducer;
+export default MealsReducer;

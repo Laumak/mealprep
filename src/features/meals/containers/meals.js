@@ -85,8 +85,8 @@ class Meals extends Component {
 }
 
 const mapState = state => ({
-  meals: state.selected.meals,
-  loading: state.selected.loading,
+  meals: state.meals.all,
+  loading: state.meals.loading,
 });
 
 export default connect(mapState)(Meals);

@@ -76,16 +76,12 @@ class ShowMeal extends Component {
   }
 }
 
-const mapState = state => {
-  return {
-    meal: state.selected.meal,
-  };
-};
+const mapState = state => ({
+  meal: state.meals.selected,
+})
 
-const mapDispatch = dispatch => {
-  return {
-    fetchMeal: (id) => dispatch(FetchMeal(id)),
-  };
-};
+const mapDispatch = dispatch => ({
+  fetchMeal: id => dispatch(FetchMeal(id)),
+})
 
 export default connect(mapState, mapDispatch)(ShowMeal);
