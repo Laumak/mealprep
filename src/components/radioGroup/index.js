@@ -6,8 +6,8 @@ import RadioItem from "./radioItem";
 const propTypes = {
   label: PropTypes.string,
   options: PropTypes.array,
-  onChange: PropTypes.func,
-  selectedValue: PropTypes.string,
+  onChange: PropTypes.func,        // eslint-disable-line
+  selectedValue: PropTypes.string, // eslint-disable-line
 };
 
 const RadioGroup = props => {
