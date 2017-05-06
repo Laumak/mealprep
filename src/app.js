@@ -19,17 +19,14 @@ import CreateMeal from "./features/meals/containers/create";
 
 const links = [
   {
-    url: "/randomizer",
-    name: "Randomizer",
-  }, {
     url: "/planner",
     name: "Planner",
   }, {
-    url: "/meals",
-    name: "All meals",
+    url: "/randomizer",
+    name: "Randomizer",
   }, {
-    url: "/meal/create",
-    name: "Create a meal",
+    url: "/meals",
+    name: "Meals",
   },
 ];
 

@@ -11,19 +11,15 @@ const Hero = ({ subtitle, location }) => {
 
   switch(location.pathname) {
     case "/planner": {
-      title = "Meal planner";
+      title = "Planner";
       break;
     }
     case "/randomizer": {
       title = "Randomizer";
       break;
     }
-    case "/meal/create": {
-      title = "Create a meal";
-      break;
-    }
     case "/meals": {
-      title = "All meals";
+      title = "Meals";
       break;
     }
     default: {
