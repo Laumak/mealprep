@@ -6,6 +6,8 @@ import "../node_modules/font-awesome/css/font-awesome.css";
 import Nav from "./components/nav";
 import Hero from "./components/hero";
 
+import Login from "./features/authentication/containers/login";
+
 import Planner    from "./features/planner";
 import Randomizer from "./features/randomizer";
 
@@ -34,10 +36,12 @@ const App = () =>
   <div>
     <Nav title="Meal Prep" links={links} />
 
-    <Route path="/" component={Hero}></Route>
+    <Route path="/" component={Hero} />
 
     <section className="section main-content">
       <div className="container">
+        <Route path="/login" component={Login} />
+
         <Route path="/" exact component={Planner} />
 
         <Route path="/randomizer" component={Randomizer} />
