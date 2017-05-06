@@ -46,6 +46,15 @@ export default function AuthReducer(state = initialState, action) {
         user: {},
         authenticated: false,
         error: payload,
+
+    case "LOGOUT": {
+      return {
+        ...state,
+          user: {},
+          error: null,
+          authenticated: false,
+      }
+    }
         loading: false,
       }
     }
