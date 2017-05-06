@@ -6,7 +6,8 @@ import "../node_modules/font-awesome/css/font-awesome.css";
 import Nav from "./components/nav";
 import Hero from "./components/hero";
 
-import Login from "./features/authentication/containers/login";
+import Login    from "./features/authentication/containers/login";
+import Register from "./features/authentication/containers/register";
 
 import Planner    from "./features/planner";
 import Randomizer from "./features/randomizer";
@@ -41,6 +42,7 @@ const App = () =>
     <section className="section main-content">
       <div className="container">
         <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
 
         <Route path="/" exact component={Planner} />
 
