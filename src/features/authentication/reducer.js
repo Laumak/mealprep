@@ -1,7 +1,7 @@
 const initialState = {
-  authenticated: false,
   user:          {},
   error:         null,
+  authenticated: false,
   loading:       false,
 }
 
@@ -12,31 +12,34 @@ export default function AuthReducer(state = initialState, action) {
     case "AUTH_START": {
       return { ...state, loading: true }
     }
+
+    // Authenticate (login)
     case "AUTH_SUCCESS": {
       return {
         ...state,
           user: payload,
-          authenticated: true,
           error: null,
+        authenticated: true,
           loading: false,
       }
     }
     case "AUTH_FAIL": {
       return {
         ...state,
+        user: {},
         error: payload,
         authenticated: false,
-        user: {},
         loading: false,
       }
     }
 
+    // Register
     case "REGISTER_SUCCESS": {
       return {
         ...state,
         user: payload,
-        authenticated: true,
         error: null,
+        authenticated: true,
         loading: false,
       }
     }
@@ -44,8 +47,11 @@ export default function AuthReducer(state = initialState, action) {
       return {
         ...state,
         user: {},
-        authenticated: false,
         error: payload,
+        authenticated: false,
+        loading: false,
+      }
+    }
 
     case "LOGOUT": {
       return {
