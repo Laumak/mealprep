@@ -1,6 +1,8 @@
 import axios from "axios"
 import baseUrl from "../../api/baseUrl"
 
+import { FetchWeek } from "../planner/actions"
+
 export const FetchMeals = () => dispatch => {
   return axios.get(`${baseUrl}/meals`)
     .then(resp => {
@@ -91,3 +93,7 @@ export const DeleteMeal = id => dispatch => {
       })
     })
 }
+
+export const DissociateMeal = ({ dayID, type }) => dispatch =>
+  axios.post(`${baseUrl}/meals/${dayID}/${type}`)
+    .then(resp => dispatch(FetchWeek(resp.data.week.number)))

@@ -9,7 +9,7 @@ import { FetchAllMeals } from "../meals/actions"
 
 import ContentWrapper from "../../components/contentWrapper"
 
-import PlannerDay from "./components/plannerDay"
+import PlannerDay from "./containers/plannerDay"
 import WeekNavigation from "./components/weekNavigation"
 
 class PlannerWeek extends Component {

@@ -3,8 +3,9 @@ import PropTypes from "prop-types"
 import { connect } from "react-redux"
 
 import { SaveDailyMeal } from "../actions"
+import { DissociateMeal } from "../../meals/actions"
 
-import RandomMealChooser from "./randomMeal"
+import RandomMealChooser from "../components/randomMeal"
 import Select from "../../../components/select"
 
 class MealChooser extends Component {
@@ -13,6 +14,7 @@ class MealChooser extends Component {
     meal: PropTypes.object,
     type: PropTypes.string.isRequired,
     saveDailyMeal: PropTypes.func.isRequired,
+    dissociateMeal: PropTypes.func.isRequired,
     allMeals: PropTypes.array,
   }
 
@@ -98,7 +100,24 @@ class MealChooser extends Component {
         !this.state.loading &&
         this.props.meal &&
         Object.keys(this.props.meal).length ?
-          <p>{this.props.meal.title}</p> :
+          <p>
+            {this.props.meal.title}
+
+            {
+              this.props.meal.id &&
+                <a
+                  className="button is-danger is-pulled-right"
+                  onClick={() => this.props.dissociateMeal({
+                    dayID: this.props.dayID,
+                    type: this.props.type,
+                  })}
+                >
+                  <span className="icon is-small">
+                    <i className="fa fa-times"></i>
+                  </span>
+                </a>
+            }
+          </p> :
           !this.state.chosenType &&
             <p>No meal chosen</p>
       }
@@ -144,7 +163,7 @@ class MealChooser extends Component {
                   className="button is-danger is-small"
                   onClick={() => this.handleTypeChoosing(null)}
                 >
-                  Back
+                  Cancel
                 </button>
               </div>
 
@@ -170,6 +189,7 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   saveDailyMeal: props => dispatch(SaveDailyMeal(props)),
+  dissociateMeal: props => dispatch(DissociateMeal(props)),
 })
 
 export default connect(mapState, mapDispatch)(MealChooser)
