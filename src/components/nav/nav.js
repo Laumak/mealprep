@@ -40,13 +40,57 @@ class Nav extends Component {
       })
 
   renderMenuLinks = links => {
-    return links.map(({ name, url }) =>
-      <NavLink
-        name={name}
-        url={url}
-        toggleNav={this.toggleNav}
-        key={url}
-      />
+    return links.map(({ name, url, auth }) => {
+      if(auth && !this.props.authenticated) {
+        return null
+      }
+
+      return (
+        <NavLink
+          name={name}
+          url={url}
+          toggleNav={this.toggleNav}
+          key={url}
+        />
+      )
+    })
+  }
+
+  renderAuthButtons = () => {
+    if(this.props.authenticated) {
+      return (
+        <div className="nav-item">
+          <div className="field is-grouped">
+            <p className="control">
+              <a className="button is-danger" onClick={this.handleLogout}>
+                <span className="icon">
+                  <i className="fa fa-sign-out"></i>
+                </span>
+                <span>Logout</span>
+              </a>
+            </p>
+          </div>
+        </div>
+      )
+    }
+
+    return (
+      <div className="nav-item">
+        <div className="field is-grouped">
+          <p className="control">
+            <Link
+              to="/login"
+              className="button is-success"
+              onClick={this.toggleNav}
+            >
+              <span className="icon">
+                <i className="fa fa-sign-in"></i>
+              </span>
+              <span>Login</span>
+            </Link>
+          </p>
+        </div>
+      </div>
     )
   }
 
@@ -62,11 +106,13 @@ class Nav extends Component {
       "is-active": this.state.mobileMenuOpen,
     })
 
+    const logoURL = this.props.authenticated ? "/" : "/randomizer"
+
     return (
       <nav className="nav has-shadow">
         <div className="container">
           <div className="nav-left">
-            <Link to="/" className="nav-item is-brand">
+            <Link to={logoURL} className="nav-item is-brand">
               <h2 className="title">{this.props.title}</h2>
             </Link>
           </div>
@@ -80,22 +126,7 @@ class Nav extends Component {
           <div className={menuClasses}>
             { this.renderMenuLinks(this.props.links) }
 
-            {
-              this.props.authenticated &&
-                <div className="nav-item">
-                  <div className="field is-grouped">
-                    <p className="control">
-                      <a className="button is-danger" onClick={this.handleLogout}>
-                        <span className="icon">
-                          <i className="fa fa-sign-out"></i>
-                        </span>
-                        <span>Logout</span>
-                      </a>
-                    </p>
-                  </div>
-                </div>
-            }
-
+            { this.renderAuthButtons() }
           </div>
         </div>
       </nav>

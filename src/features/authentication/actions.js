@@ -52,3 +52,10 @@ export const Authenticate = credentials => dispatch => {
   )
 }
 
+export const Logout = () => (dispatch) =>
+  new Promise(resolve => {
+    localStorage.removeItem("token")
+    dispatch({ type: "LOGOUT" })
+
+    return resolve()
+  })
