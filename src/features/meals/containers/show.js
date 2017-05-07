@@ -12,6 +12,7 @@ class ShowMeal extends Component {
   static propTypes = {
     match: PropTypes.object.isRequired,
     fetchMeal: PropTypes.func.isRequired,
+
     meal: PropTypes.shape({
       id: PropTypes.oneOfType([
         PropTypes.string,
@@ -24,6 +25,7 @@ class ShowMeal extends Component {
       images: PropTypes.array,
       type: PropTypes.string,
     }),
+    authenticated: PropTypes.bool.isRequired,
   }
 
   static contextTypes = {
@@ -58,6 +60,7 @@ class ShowMeal extends Component {
           id={this.props.meal.id}
           onHeaderClick={this.onHeaderClick}
           headerButtonText="Edit"
+          auth={this.props.authenticated}
         >
           <p><b>Type:</b> {this.props.meal.type}</p>
           <div>
@@ -78,6 +81,7 @@ class ShowMeal extends Component {
 
 const mapState = state => ({
   meal: state.meals.selected,
+  authenticated: state.auth.authenticated,
 })
 
 const mapDispatch = dispatch => ({

@@ -15,12 +15,14 @@ class Card extends Component {
     headerButtonText: PropTypes.string,
     toggleable: PropTypes.bool,
     open: PropTypes.bool,
+    auth: PropTypes.bool,
   }
 
   static defaultProps = {
     title: "Loading...",
     toggleable: false,
     open: true,
+    auth: false,
   }
 
   state = {
@@ -42,12 +44,15 @@ class Card extends Component {
         <p className="card-header-title">
           <span>{ title }</span>
 
-          <button
-            className="button is-warning is-small"
-            onClick={() => onHeaderClick(id)}
-          >
-            {headerButtonText}
-          </button>
+          {
+            this.props.auth &&
+              <button
+                className="button is-warning is-small"
+                onClick={() => onHeaderClick(id)}
+              >
+                {headerButtonText}
+              </button>
+          }
         </p>
       )
     }
