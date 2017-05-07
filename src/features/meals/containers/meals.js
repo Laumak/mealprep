@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom"
 
 import navigate from "../../../utils/navigate";
+
+import { FetchMeals } from "../actions"
 
 import Card from "../../../components/card";
 import Pagination from "../../../components/pagination";
@@ -16,6 +19,7 @@ class Meals extends Component {
       total: PropTypes.number,
     }).isRequired,
     loading: PropTypes.bool.isRequired,
+    fetchMeals: PropTypes.func.isRequired,
   }
 
   static contextTypes = {
@@ -27,6 +31,10 @@ class Meals extends Component {
   state = {
     loading: false,
   };
+
+  componentDidMount() {
+    this.props.fetchMeals()
+  }
 
   onHeaderClick = id => navigate(`/meal/${id}`, this.context);
 
@@ -73,9 +81,9 @@ class Meals extends Component {
             <div className="content">
               <p>No meals found.</p>
 
-              <button className="button is-success" onClick={() => navigate(`/meal/create`, this.context)}>
+              <Link to="/meal/create" className="button is-success">
                 Create a meal
-              </button>
+              </Link>
             </div>
         }
       </section>
@@ -89,4 +97,8 @@ const mapState = state => ({
   loading: state.meals.loading,
 });
 
-export default connect(mapState)(Meals);
+const mapDispatch = dispatch => ({
+  fetchMeals: () => dispatch(FetchMeals()),
+})
+
+export default connect(mapState, mapDispatch)(Meals);
