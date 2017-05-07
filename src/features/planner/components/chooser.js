@@ -142,7 +142,7 @@ class MealChooser extends Component {
 }
 
 const mapState = state => ({
-  allMeals: state.meals.all.data,
+  allMeals: state.meals.allz,
 });
 
 const mapDispatch = dispatch => ({

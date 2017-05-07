@@ -4,6 +4,7 @@ const initialState = {
   all: {
     data: [],
   },
+  allz: [],
   loading: false,
   error: null,
 };
@@ -13,6 +14,10 @@ const MealsReducer = (state = initialState, { type, payload }) => {
     // All meals
     case "FETCH_MEALS_SUCCESS": {
       return { ...state, all: payload };
+    }
+
+    case "FETCH_ALL_MEALS_SUCCESS": {
+      return { ...state, allz: payload };
     }
 
     // All meals - pagination

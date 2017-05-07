@@ -5,6 +5,7 @@ import { connect } from "react-redux"
 import navigate from "../../utils/navigate"
 
 import { FetchCurrentWeek, FetchWeek, GoToWeek } from "./actions"
+import { FetchAllMeals } from "../meals/actions"
 
 import ContentWrapper from "../../components/contentWrapper"
 
@@ -15,6 +16,7 @@ class PlannerWeek extends Component {
   static propTypes = {
     currentWeek: PropTypes.object,
     fetchCurrentWeek: PropTypes.func.isRequired,
+    fetchAllMeals: PropTypes.func.isRequired,
     fetchWeek: PropTypes.func.isRequired,
     match: PropTypes.object,
   }
@@ -26,6 +28,8 @@ class PlannerWeek extends Component {
   componentDidMount() {
     const weekNumber = this.props.match.params.number
     const year       = this.props.match.params.year
+
+    this.props.fetchAllMeals()
 
     if(!this.props.currentWeek.number) {
       if(!weekNumber) {
@@ -156,6 +160,7 @@ const mapDispatch = dispatch => ({
   fetchCurrentWeek: () => dispatch(FetchCurrentWeek()),
   fetchWeek: (number, year) => dispatch(FetchWeek(number, year)),
   goToWeek: number => dispatch(GoToWeek(number)),
+  fetchAllMeals: () => dispatch(FetchAllMeals()),
 })
 
 export default connect(mapState, mapDispatch)(PlannerWeek)
