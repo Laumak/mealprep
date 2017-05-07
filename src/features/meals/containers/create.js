@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import React, { Component } from "react"
+import PropTypes from "prop-types"
+import { connect } from "react-redux"
 
-import navigate from "../../../utils/navigate";
+import navigate from "../../../utils/navigate"
 
-import { StoreMeal } from "../actions";
+import { StoreMeal } from "../actions"
 
-import MealForm from "../components/mealForm";
+import MealForm from "../components/mealForm"
 
 class CreateMeal extends Component {
   static propTypes = {
@@ -30,23 +30,23 @@ class CreateMeal extends Component {
   }
 
   handleOnChange = e => {
-    const { value, name } = e.target;
-    const meal = { ...this.state.meal, [name]: value };
+    const { value, name } = e.target
+    const meal = { ...this.state.meal, [name]: value }
 
-    return this.setState({ meal });
+    return this.setState({ meal })
   }
 
   handleOnSubmit = e => {
-    e.preventDefault();
+    e.preventDefault()
 
-    this.setState({ loading: true });
+    this.setState({ loading: true })
 
     this.props.storeMeal(this.state.meal)
       .then(meal => {
-        this.setState({ loading: false });
+        this.setState({ loading: false })
 
-        return navigate(`/meal/${meal.id}`, this.context);
-      });
+        return navigate(`/meal/${meal.id}`, this.context)
+      })
   }
 
   render() {
@@ -57,14 +57,14 @@ class CreateMeal extends Component {
         handleOnChange={this.handleOnChange}
         handleOnSubmit={this.handleOnSubmit}
       />
-    );
+    )
   }
 }
 
 const mapDispatch = dispatch => {
   return {
     storeMeal: meal => dispatch(StoreMeal(meal)),
-  };
-};
+  }
+}
 
-export default connect(null, mapDispatch)(CreateMeal);
+export default connect(null, mapDispatch)(CreateMeal)

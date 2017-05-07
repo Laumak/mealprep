@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import React, { Component } from "react"
+import PropTypes from "prop-types"
+import { connect } from "react-redux"
 
-import navigate from "../../../utils/navigate";
+import navigate from "../../../utils/navigate"
 
-import { EditMeal as EditMealAction, FetchMeal, DeleteMeal } from "../actions";
+import { EditMeal as EditMealAction, FetchMeal, DeleteMeal } from "../actions"
 
-import MealForm from "../components/mealForm";
+import MealForm from "../components/mealForm"
 
 class EditMeal extends Component {
   static propTypes = {
@@ -33,44 +33,44 @@ class EditMeal extends Component {
   }
 
   componentDidMount() {
-    const mealID = this.props.match.params.id;
+    const mealID = this.props.match.params.id
 
     this.props.fetchMeal(mealID)
-      .then(meal => this.setState({ loading: false, meal }));
+      .then(meal => this.setState({ loading: false, meal }))
   }
 
   handleOnChange = e => {
-    const { value, name } = e.target;
+    const { value, name } = e.target
 
-    const meal = { ...this.state.meal, [name]: value };
+    const meal = { ...this.state.meal, [name]: value }
 
-    return this.setState({ meal });
+    return this.setState({ meal })
   }
 
   handleOnSubmit = e => {
-    e.preventDefault();
+    e.preventDefault()
 
-    this.setState({ loading: true });
+    this.setState({ loading: true })
 
     this.props.editMeal(this.state.meal)
       .then(meal => {
-        this.setState({ loading: false });
+        this.setState({ loading: false })
 
-        return navigate(`/meal/${meal.id}`, this.context);
-      });
+        return navigate(`/meal/${meal.id}`, this.context)
+      })
   }
 
   handleOnDelete = (e, id) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    this.setState({ loading: true });
+    this.setState({ loading: true })
 
     this.props.deleteMeal(id)
       .then(() => {
-        this.setState({ loading: false });
+        this.setState({ loading: false })
 
-        return navigate("/meals", this.context);
-      });
+        return navigate("/meals", this.context)
+      })
   }
 
   render() {
@@ -84,18 +84,18 @@ class EditMeal extends Component {
         handleOnSubmit={this.handleOnSubmit}
         handleOnDelete={this.handleOnDelete}
       />
-    );
+    )
   }
 }
 
 const mapState = state => ({
   meal: state.meals.selected,
-});
+})
 
 const mapDispatch = dispatch => ({
   editMeal: meal => dispatch(EditMealAction(meal)),
   fetchMeal: id => dispatch(FetchMeal(id)),
   deleteMeal: id => dispatch(DeleteMeal(id)),
-});
+})
 
-export default connect(mapState, mapDispatch)(EditMeal);
+export default connect(mapState, mapDispatch)(EditMeal)

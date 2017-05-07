@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import React, { Component } from "react"
+import PropTypes from "prop-types"
+import { connect } from "react-redux"
 
-import navigate from "../../../utils/navigate";
+import navigate from "../../../utils/navigate"
 
-import { FetchMeal } from "../actions";
+import { FetchMeal } from "../actions"
 
-import Card from "../../../components/card";
-import ContentWrapper from "../../../components/contentWrapper";
+import Card from "../../../components/card"
+import ContentWrapper from "../../../components/contentWrapper"
 
 class ShowMeal extends Component {
   static propTypes = {
@@ -40,18 +40,18 @@ class ShowMeal extends Component {
   }
 
   componentDidMount() {
-    const id = this.props.match.params.id;
+    const id = this.props.match.params.id
 
-    this.props.fetchMeal(id);
+    this.props.fetchMeal(id)
   }
 
   componentWillReceiveProps({ meal, match }) {
     if(meal && meal.id !== +match.params.id) {
-      return this.props.fetchMeal(match.params.id);
+      return this.props.fetchMeal(match.params.id)
     }
   }
 
-  onHeaderClick = id => navigate(`/meal/${id}/edit`, this.context);
+  onHeaderClick = id => navigate(`/meal/${id}/edit`, this.context)
 
   render() {
     return (
@@ -78,7 +78,7 @@ class ShowMeal extends Component {
           </Card>
         </article>
       </ContentWrapper>
-    );
+    )
   }
 }
 
@@ -91,4 +91,4 @@ const mapDispatch = dispatch => ({
   fetchMeal: id => dispatch(FetchMeal(id)),
 })
 
-export default connect(mapState, mapDispatch)(ShowMeal);
+export default connect(mapState, mapDispatch)(ShowMeal)

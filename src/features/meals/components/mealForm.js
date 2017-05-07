@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
+import React from "react"
+import PropTypes from "prop-types"
+import classNames from "classnames"
 
-import RadioGroup from "../../../components/radioGroup";
-import ContentWrapper from "../../../components/contentWrapper";
+import RadioGroup from "../../../components/radioGroup"
+import ContentWrapper from "../../../components/contentWrapper"
 
 const propTypes = {
   meal: PropTypes.object,
@@ -13,12 +13,12 @@ const propTypes = {
   handleOnChange: PropTypes.func.isRequired,
   handleOnSubmit: PropTypes.func.isRequired,
   handleOnDelete: PropTypes.func,
-};
+}
 
 const defaultProps = {
   meal: {},
   submitButtonText: "Create",
-};
+}
 
 const options = [
   {
@@ -30,20 +30,20 @@ const options = [
     title: "Eating out",
     parent: "type",
   },
-];
+]
 
 const MealForm = props => {
   const submitButtonClasses = classNames({
     button: true,
     "is-success": true,
     "is-loading": props.loading,
-  });
+  })
 
   const deleteButtonClasses = classNames({
     button: true,
     "is-danger": true,
     "is-loading": props.loading,
-  });
+  })
 
   return (
     <ContentWrapper>
@@ -114,10 +114,10 @@ const MealForm = props => {
         </form>
       </div>
     </ContentWrapper>
-  );
-};
+  )
+}
 
-MealForm.propTypes    = propTypes;
-MealForm.defaultProps = defaultProps;
+MealForm.propTypes    = propTypes
+MealForm.defaultProps = defaultProps
 
-export default MealForm;
+export default MealForm

@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import React, { Component } from "react"
+import PropTypes from "prop-types"
+import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 
-import navigate from "../../../utils/navigate";
+import navigate from "../../../utils/navigate"
 
 import { FetchMeals } from "../actions"
 
-import Card from "../../../components/card";
-import Pagination from "../../../components/pagination";
-import ContentWrapper from "../../../components/contentWrapper";
+import Card from "../../../components/card"
+import Pagination from "../../../components/pagination"
+import ContentWrapper from "../../../components/contentWrapper"
 
 class Meals extends Component {
   static propTypes = {
@@ -31,13 +31,13 @@ class Meals extends Component {
 
   state = {
     loading: false,
-  };
+  }
 
   componentDidMount() {
     this.props.fetchMeals()
   }
 
-  onHeaderClick = id => navigate(`/meal/${id}`, this.context);
+  onHeaderClick = id => navigate(`/meal/${id}`, this.context)
 
   renderMeals() {
     return this.props.meals.data.map(meal => {
@@ -51,8 +51,8 @@ class Meals extends Component {
         >
           <p>{meal.description}</p>
         </Card>
-      );
-    });
+      )
+    })
   }
 
   render() {
@@ -61,7 +61,7 @@ class Meals extends Component {
         <Card title="..." className="meal">
           <p>...</p>
         </Card>
-      );
+      )
     }
 
     return (
@@ -88,17 +88,17 @@ class Meals extends Component {
             </div>
         }
       </ContentWrapper>
-    );
+    )
   }
 }
 
 const mapState = state => ({
   meals: state.meals.all,
   loading: state.meals.loading,
-});
+})
 
 const mapDispatch = dispatch => ({
   fetchMeals: () => dispatch(FetchMeals()),
 })
 
-export default connect(mapState, mapDispatch)(Meals);
+export default connect(mapState, mapDispatch)(Meals)
