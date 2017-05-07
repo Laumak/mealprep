@@ -20,20 +20,37 @@ class MealChooser extends Component {
     meal: {},
   }
 
-  state = {
-    loading: false,
-    chosenType: null,
-    lunch: {},
-    dinner: {},
-  }
+  constructor(props) {
+    super(props)
 
-  handleTypeChoosing = type => {
-    this.setState({ chosenType: type })
+    let lunch = {}
+    let dinner = {}
 
-    if(!this.props.meal.id) {
-      this.setState({ [this.props.type]: this.props.allMeals[0] })
+    if(props.type === "lunch") {
+      if(props.meal.id) {
+        lunch = props.meal
+      } else {
+        lunch = props.allMeals[0]
+      }
+    }
+
+    if(props.type === "dinner") {
+      if(props.meal.id) {
+        dinner = props.meal
+      } else {
+        dinner = props.allMeals[0]
+      }
+    }
+
+    this.state = {
+      loading: false,
+      chosenType: null,
+      lunch: lunch,
+      dinner: dinner,
     }
   }
+
+  handleTypeChoosing = type => this.setState({ chosenType: type })
 
   handleMealSaving = type => {
     this.setState({ loading: true })
