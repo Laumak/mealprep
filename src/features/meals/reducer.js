@@ -27,14 +27,16 @@ const MealsReducer = (state = initialState, { type, payload }) => {
     case "FETCH_MORE_MEALS_SUCCESS": {
       const meals = state.all.data.concat(payload.data);
 
-      return {
+      const newState = {
         ...state,
-        meals: {
+        all: {
           ...payload,
           data: meals,
         },
         loading: false,
-      };
+      }
+
+      return newState
     }
 
     // Selected meal
