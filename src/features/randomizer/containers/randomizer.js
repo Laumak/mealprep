@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import PropTypes from "prop-types"
 
-import navigate from "../../utils/navigate";
+import navigate from "../../../utils/navigate"
 
-import { FetchRandomMeal } from "./actions";
+import { FetchRandomMeal } from "../actions"
 
-import Loader from "../../components/loader";
-import LoadingButton from "../../components/loadingButton";
-import Card from "../../components/card";
-import RadioGroup from "../../components/radioGroup";
+import Loader from "../../../components/loader"
+import LoadingButton from "../../../components/loadingButton"
+import Card from "../../../components/card"
+import RadioGroup from "../../../components/radioGroup"
 
 class Randomizer extends Component {
   static propTypes = {
@@ -31,7 +31,7 @@ class Randomizer extends Component {
   }
 
   generateMeal = () => {
-    this.setState({ loading: true, noResults: false });
+    this.setState({ loading: true, noResults: false })
 
     this.props.fetchRandomMeal({ type: this.state.mealType })
       .then(() =>
@@ -39,19 +39,19 @@ class Randomizer extends Component {
       )
       .catch(() =>
         this.setState({ mealVisible: false, loading: false, noResults: true })
-      );
+      )
   }
 
   handleOnRadioChange = e => {
-    const value = e.target.value;
+    const value = e.target.value
 
-    this.setState({ mealType: value });
+    this.setState({ mealType: value })
   }
 
-  onHeaderClick = id => navigate(`/meal/${id}`, this.context);
+  onHeaderClick = id => navigate(`/meal/${id}`, this.context)
 
   render() {
-    const { randomMeal } = this.props;
+    const { randomMeal } = this.props
 
     const options = [
       {
@@ -63,7 +63,7 @@ class Randomizer extends Component {
         title: "Eating out",
         parent: "meal-type",
       },
-    ];
+    ]
 
     return (
       <div className="randomizer">
@@ -120,7 +120,7 @@ class Randomizer extends Component {
           </span>
         </Loader>
       </div>
-    );
+    )
   }
 }
 
@@ -132,4 +132,4 @@ const mapDispatch = dispatch => ({
   fetchRandomMeal: props => dispatch(FetchRandomMeal(props)),
 })
 
-export default connect(mapState, mapDispatch)(Randomizer);
+export default connect(mapState, mapDispatch)(Randomizer)
