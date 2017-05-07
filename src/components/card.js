@@ -36,7 +36,7 @@ class Card extends Component {
   }
 
   renderHeaderContent = () => {
-    const { title, id, onHeaderClick, headerButtonText } = this.props
+    const { title, id, onHeaderClick, headerButtonText, auth } = this.props
 
     // Header has a clickable button
     if(onHeaderClick && headerButtonText) {
@@ -45,7 +45,7 @@ class Card extends Component {
           <span>{ title }</span>
 
           {
-            this.props.auth &&
+            auth &&
               <button
                 className="button is-warning is-small"
                 onClick={() => onHeaderClick(id)}
