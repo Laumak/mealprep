@@ -2,6 +2,8 @@ import React, { Component } from "react"
 import PropTypes from "prop-types"
 import { connect } from "react-redux"
 
+import navigate from "../../utils/navigate"
+
 import { FetchCurrentWeek, FetchWeek, GoToWeek } from "./actions"
 
 import PlannerDay from "./components/plannerDay"
@@ -31,8 +33,6 @@ class PlannerWeek extends Component {
   }
 
   handleOnGoToWeek = type => {
-    const { router: { history } } = this.context
-
     let num
     const year = this.props.match.params.year
 
@@ -45,7 +45,7 @@ class PlannerWeek extends Component {
     }
 
     return this.props.fetchWeek(num, year)
-      .then(() => history.push(`/planner/${num}`))
+      .then(() => navigate(`/planner/${num}`, this.context))
   }
 
   getToday = todayIndex => {
