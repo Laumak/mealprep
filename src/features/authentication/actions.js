@@ -2,13 +2,55 @@ import axios from "axios"
 
 import BASE_URL from "../../api/baseUrl"
 
+import checkForValidToken, { types } from "../../utils/checkForValidToken"
+
 const API = {
   REGISTER: `${BASE_URL}/register`,
   AUTHENTICATE: `${BASE_URL}/authenticate`,
+  CHECK_AUTH_STATUS: `${BASE_URL}/checkAuthStatus`,
 }
 
-const NO_TOKEN      = "no_token"
-const TOKEN_EXPIRED = "token_expired"
+export const CheckAuthStatus = () => dispatch => {
+  dispatch({ type: "AUTH_START" })
+
+  return new Promise((resolve, reject) => {
+    let payload = {}
+
+    const tokenState = checkForValidToken()
+
+    if(tokenState === types.NO_TOKEN || tokenState === types.TOKEN_EXPIRED) {
+      if(tokenState === types.TOKEN_EXPIRED) {
+        localStorage.removeItem("token")
+      }
+
+      dispatch({ type: "AUTH_CHECK_FAIL" })
+
+      return reject(tokenState)
+    }
+
+    // Token is found and it's not expired -> check at the server.
+    axios.post(API.CHECK_AUTH_STATUS)
+      // Token is valid and checks out at the server.
+      .then(response => {
+        payload = response.data.user
+        dispatch({ type: "AUTH_CHECK_SUCCESS", payload })
+
+        return resolve(response.data.user)
+      })
+
+      // Token checking fails at the server.
+      .catch(({ response }) => {
+        // If the token is expired, remove the expired token and ask the user to log back in.
+        if(response.data.error === types.TOKEN_EXPIRED) {
+          localStorage.removeItem("token")
+          // browserHistory.push("/login")
+        }
+
+        dispatch({ type: "AUTH_CHECK_FAIL" })
+        return reject(response.data.error)
+      })
+  })
+}
 
 export const Register = credentials => dispatch => {
   dispatch({ type: "AUTH_START" })
@@ -26,7 +68,7 @@ export const Register = credentials => dispatch => {
 
         dispatch({ type: "REGISTER_FAIL", payload: message })
         return reject(message)
-  })
+      })
   )
 }
 

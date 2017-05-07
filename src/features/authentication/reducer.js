@@ -17,10 +17,10 @@ export default function AuthReducer(state = initialState, action) {
     case "AUTH_SUCCESS": {
       return {
         ...state,
-          user: payload,
-          error: null,
+        user: payload,
+        error: null,
         authenticated: true,
-          loading: false,
+        loading: false,
       }
     }
     case "AUTH_FAIL": {
@@ -61,6 +61,24 @@ export default function AuthReducer(state = initialState, action) {
           authenticated: false,
       }
     }
+
+    // Check the user's auth status on page load
+    case "AUTH_CHECK_SUCCESS": {
+      return {
+        ...state,
+        user: payload,
+        error: null,
+        authenticated: true,
+        loading: false,
+      }
+    }
+    case "AUTH_CHECK_FAIL": {
+      return {
+        ...state,
+        user: {},
+        error: null,
+        authenticated: false,
+        errorMessage: null,
         loading: false,
       }
     }
