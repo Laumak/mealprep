@@ -49,9 +49,9 @@ const App = () => (
     <Route path="/planner/:number/:year?" component={Authenticated(Planner)} />
 
     <Switch>
-      <Route path="/meal/:id" component={ShowMeal} />
       <Route path="/meal/create" component={Authenticated(CreateMeal)} />
       <Route path="/meal/:id/edit" component={Authenticated(EditMeal)} />
+      <Route path="/meal/:id" component={ShowMeal} />
     </Switch>
   </div>
 )
