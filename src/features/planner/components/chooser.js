@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import React, { Component } from "react"
+import PropTypes from "prop-types"
+import { connect } from "react-redux"
 
-import { SaveDailyMeal } from "../actions";
+import { SaveDailyMeal } from "../actions"
 
-import RandomMealChooser from "./randomMeal";
-import Select from "../../../components/select";
+import RandomMealChooser from "./randomMeal"
+import Select from "../../../components/select"
 
 class MealChooser extends Component {
   static propTypes = {
@@ -23,49 +23,55 @@ class MealChooser extends Component {
   state = {
     loading: false,
     chosenType: null,
-    newLunch: {},
-    newDinner: {},
+    lunch: {},
+    dinner: {},
   }
 
-  handleTypeChoosing = type => this.setState({ chosenType: type });
+  handleTypeChoosing = type => {
+    this.setState({ chosenType: type })
+
+    if(!this.props.meal.id) {
+      this.setState({ [this.props.type]: this.props.allMeals[0] })
+    }
+  }
 
   handleMealSaving = type => {
-    this.setState({ loading: true });
+    this.setState({ loading: true })
 
-    const mealID = type === "lunch" ? this.state.newLunch.id : this.state.newDinner.id;
-    const dayID  = this.props.dayID;
+    const mealID = type === "lunch" ? this.state.lunch.id : this.state.dinner.id
+    const dayID  = this.props.dayID
 
-    const payload = { type, dayID, mealID };
+    const payload = { type, dayID, mealID }
 
     this.props.saveDailyMeal(payload)
-      .then(() => this.setState({ newLunch: {}, newDinner: {}, chosenType: null }))
-      .then(() => this.setState({ loading: false }));
+      .then(() => this.setState({ lunch: {}, dinner: {}, chosenType: null }))
+      .then(() => this.setState({ loading: false }))
   }
 
   handleTypeMealChoosing = meal => {
     if(this.props.type === "lunch") {
-      return this.setState({ newLunch: meal });
+      return this.setState({ lunch: meal })
     }
 
-    return this.setState({ newDinner: meal });
+    return this.setState({ dinner: meal })
   }
 
   handleMealSelect = e => {
-    const mealID = +e.target.value;
-    const meal = this.props.allMeals.filter(m => m.id === mealID)[0];
+    const mealID = +e.target.value
+    const meal = this.props.allMeals.filter(m => m.id === mealID)[0]
 
-    this.handleTypeMealChoosing(meal);
+    this.handleTypeMealChoosing(meal)
   }
 
   render() {
-    let meal = this.props.meal;
+    let meal = this.props.meal
 
-    if(this.props.type === "lunch" && Object.keys(this.state.newLunch).length) {
-      meal = this.state.newLunch;
+    if(this.props.type === "lunch" && Object.keys(this.state.lunch).length) {
+      meal = this.state.lunch
     }
 
-    if(this.props.type === "dinner" && Object.keys(this.state.newDinner).length) {
-      meal = this.state.newDinner;
+    if(this.props.type === "dinner" && Object.keys(this.state.dinner).length) {
+      meal = this.state.dinner
     }
 
     return (
@@ -137,16 +143,16 @@ class MealChooser extends Component {
           </div>
       }
       </div>
-    );
+    )
   }
 }
 
 const mapState = state => ({
   allMeals: state.meals.allz,
-});
+})
 
 const mapDispatch = dispatch => ({
   saveDailyMeal: props => dispatch(SaveDailyMeal(props)),
-});
+})
 
-export default connect(mapState, mapDispatch)(MealChooser);
+export default connect(mapState, mapDispatch)(MealChooser)
