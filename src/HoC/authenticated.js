@@ -7,6 +7,7 @@ import axios from "axios"
 import { CheckAuthStatus } from "../features/authentication/actions"
 
 import Card from "../components/card"
+import ContentWrapprer from "../components/contentWrapper"
 
 const Authenticated = (WrappedComponent, protectedRoute = true) => {
   class AuthenticatedHoC extends Component {
@@ -54,12 +55,14 @@ const Authenticated = (WrappedComponent, protectedRoute = true) => {
       }
 
       return (
-        <div className="unauthorized">
-          <Card title="Unauthorized">
+        <ContentWrapprer>
+          <div className="unauthorized">
+            <Card title="Unauthorized">
 
-            <p>Please <Link to="/login">log in</Link> to see this content.</p>
-          </Card>
-        </div>
+              <p>Please <Link to="/login">log in</Link> to see this content.</p>
+            </Card>
+          </div>
+        </ContentWrapprer>
       )
     }
   }
