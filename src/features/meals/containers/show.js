@@ -7,6 +7,7 @@ import navigate from "../../../utils/navigate";
 import { FetchMeal } from "../actions";
 
 import Card from "../../../components/card";
+import ContentWrapper from "../../../components/contentWrapper";
 
 class ShowMeal extends Component {
   static propTypes = {
@@ -54,27 +55,29 @@ class ShowMeal extends Component {
 
   render() {
     return (
-      <article className="meal">
-        <Card
-          title={this.props.meal.title}
-          id={this.props.meal.id}
-          onHeaderClick={this.onHeaderClick}
-          headerButtonText="Edit"
-          auth={this.props.authenticated}
-        >
-          <p><b>Type:</b> {this.props.meal.type}</p>
-          <div>
-            <span><b>Address: </b></span>
-            <a href={this.props.meal.url} target="_blank" rel="noopener noreferrer">
-              {this.props.meal.url}
-            </a>
-          </div>
-          <br />
+      <ContentWrapper>
+        <article className="meal">
+          <Card
+            title={this.props.meal.title}
+            id={this.props.meal.id}
+            onHeaderClick={this.onHeaderClick}
+            headerButtonText="Edit"
+            auth={this.props.authenticated}
+          >
+            <p><b>Type:</b> {this.props.meal.type}</p>
+            <div>
+              <span><b>Address: </b></span>
+              <a href={this.props.meal.url} target="_blank" rel="noopener noreferrer">
+                {this.props.meal.url}
+              </a>
+            </div>
+            <br />
 
-          <b>Description:</b>
-          <p>{this.props.meal.description}</p>
-        </Card>
-      </article>
+            <b>Description:</b>
+            <p>{this.props.meal.description}</p>
+          </Card>
+        </article>
+      </ContentWrapper>
     );
   }
 }

@@ -11,8 +11,10 @@ const Authentication = () => {
     <ContentWrapper>
       <div className="columns">
         <div className="column is-8 is-offset-2">
+
           <Route path={"/login"} component={Login} />
           <Route path={"/register"} component={Register} />
+
         </div>
       </div>
     </ContentWrapper>

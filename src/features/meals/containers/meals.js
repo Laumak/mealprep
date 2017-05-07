@@ -9,6 +9,7 @@ import { FetchMeals } from "../actions"
 
 import Card from "../../../components/card";
 import Pagination from "../../../components/pagination";
+import ContentWrapper from "../../../components/contentWrapper";
 
 class Meals extends Component {
   static propTypes = {
@@ -64,7 +65,7 @@ class Meals extends Component {
     }
 
     return (
-      <section>
+      <ContentWrapper>
         {
           this.props.meals.data.length ?
             <div className="meals">
@@ -86,8 +87,7 @@ class Meals extends Component {
               </Link>
             </div>
         }
-      </section>
-
+      </ContentWrapper>
     );
   }
 }
