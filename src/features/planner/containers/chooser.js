@@ -85,11 +85,11 @@ class MealChooser extends Component {
   render() {
     let meal = this.props.meal
 
-    if(this.props.type === "lunch" && Object.keys(this.state.lunch).length) {
+    if(this.props.type === "lunch") {
       meal = this.state.lunch
     }
 
-    if(this.props.type === "dinner" && Object.keys(this.state.dinner).length) {
+    if(this.props.type === "dinner") {
       meal = this.state.dinner
     }
 
