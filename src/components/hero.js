@@ -1,52 +1,29 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from "react"
+import PropTypes from "prop-types"
 
 const propTypes = {
+  title:    PropTypes.string.isRequired,
   subtitle: PropTypes.string,
-  location: PropTypes.object.isRequired,
-};
+}
 
-const Hero = ({ subtitle, location }) => {
-  let title;
+const Hero = props =>
+  <section className="hero is-primary is-bold">
+    <div className="hero-body">
+      <div className="container">
+        <h1 className="title">
+          {props.title}
+        </h1>
 
-  switch(location.pathname) {
-    case "/planner": {
-      title = "Planner";
-      break;
-    }
-    case "/randomizer": {
-      title = "Randomizer";
-      break;
-    }
-    case "/meals": {
-      title = "Meals";
-      break;
-    }
-    default: {
-      return null;
-    }
-  }
-
-  return (
-    <section className="hero is-primary is-bold">
-      <div className="hero-body">
-        <div className="container">
-          <h1 className="title">
-            {title}
-          </h1>
-
-          {
-            subtitle &&
-            <h2 className="subtitle">
-              {subtitle}
-            </h2>
-          }
-        </div>
+        {
+          props.subtitle &&
+          <h2 className="subtitle">
+            {props.subtitle}
+          </h2>
+        }
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
 
-Hero.propTypes = propTypes;
+Hero.propTypes = propTypes
 
-export default Hero;
+export default Hero
