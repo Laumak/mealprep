@@ -8,8 +8,8 @@ const propTypes = {
 
 const Hero = props =>
   <section className="hero is-primary is-bold">
-    <div className="hero-body">
-      <div className="container">
+    <div className="container">
+      <div className="hero-body">
         <h1 className="title">
           {props.title}
         </h1>
