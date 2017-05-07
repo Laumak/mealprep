@@ -6,6 +6,8 @@ import navigate from "../../utils/navigate"
 
 import { FetchCurrentWeek, FetchWeek, GoToWeek } from "./actions"
 
+import ContentWrapper from "../../components/contentWrapper"
+
 import PlannerDay from "./components/plannerDay"
 import WeekNavigation from "./components/weekNavigation"
 
@@ -123,7 +125,7 @@ class PlannerWeek extends Component {
     const { currentWeek } = this.props
 
     return (
-      <div className="planner">
+      <ContentWrapper>
         {
           currentWeek.number &&
             <WeekNavigation
@@ -140,7 +142,7 @@ class PlannerWeek extends Component {
               </div>
           }
         </div>
-      </div>
+      </ContentWrapper>
     )
   }
 }
