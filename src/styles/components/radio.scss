@@ -10,8 +10,6 @@ $selected: $primary;
   margin-right: 20px;
 
   input[type="radio"] {
-    display: none;
-
     & + label {
       color: $text;
     }
@@ -19,14 +17,14 @@ $selected: $primary;
 
   .radio-button {
     transition: background-color 250ms linear;
-    background-color: #fff;
-    border: 2px solid $outline;
-    width: 20px;
-    height: 20px;
+    // background-color: #fff;
+    // border: 2px solid $outline;
+    // width: 20px;
+    // height: 20px;
+    // border-radius: 50%;
     margin-right: 5px;
     vertical-align: middle;
     cursor: pointer;
-    border-radius: 50%;
   }
 
   input[type="radio"]:checked + label {
