@@ -2,7 +2,9 @@ import axios from "axios";
 import baseUrl from "../../api/baseUrl";
 
 export const FetchRandomMeal = ({ type = null, toState = true }) => dispatch => {
-  return axios.post(`${baseUrl}/meals/random`, { mealType: type })
+  const url = type ? `${baseUrl}/meals/random/${type}` : `${baseUrl}/meals/random`
+
+  return axios.get(url)
     .then(resp => {
       if(toState) {
         dispatch({

@@ -21,7 +21,7 @@ const defaultProps = {
 
 const options = [
   {
-    value: "at-home",
+    value: "home",
     title: "At home",
     parent: "type",
   }, {
