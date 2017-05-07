@@ -25,11 +25,13 @@ class PlannerWeek extends Component {
     const weekNumber = this.props.match.params.number
     const year       = this.props.match.params.year
 
-    if(!weekNumber) {
-      return this.props.fetchCurrentWeek()
-    }
+    if(!this.props.currentWeek.number) {
+      if(!weekNumber) {
+        return this.props.fetchCurrentWeek()
+      }
 
-    this.props.fetchWeek(weekNumber, year)
+      this.props.fetchWeek(weekNumber, year)
+    }
   }
 
   handleOnGoToWeek = type => {
@@ -85,8 +87,8 @@ class PlannerWeek extends Component {
     return today
   }
 
+  // https://gist.github.com/dblock/1081513#gistcomment-1756491
   weekOfYear = date => {
-    // https://gist.github.com/dblock/1081513#gistcomment-1756491
     const d = new Date(+date)
 
     d.setHours(0,0,0)
