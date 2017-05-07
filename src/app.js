@@ -7,8 +7,7 @@ import Authenticated from "./HoC/authenticated"
 
 import Nav from "./components/nav";
 
-import Login    from "./features/authentication/containers/login";
-import Register from "./features/authentication/containers/register";
+import Authentication from "./features/authentication";
 
 import Planner    from "./features/planner";
 import Randomizer from "./features/randomizer";
@@ -38,25 +37,22 @@ const App = () => (
   <div className="app-container">
     <Nav title="Meal Prep" links={links} />
 
-    <section className="section main-content">
-      <div className="container">
-        <Route path="/" exact component={Authenticated(Planner)} />
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
+    <Route path="/" exact component={Authenticated(Planner)} />
 
-        <Route path="/meals" component={Meals} />
-        <Route path="/randomizer" component={Randomizer} />
+    <Route path="/login" component={Authentication} />
+    <Route path="/register" component={Authentication} />
 
-        <Route path="/planner" exact component={Authenticated(Planner)} />
-        <Route path="/planner/:number/:year?" component={Authenticated(Planner)} />
+    <Route path="/meals" component={Meals} />
+    <Route path="/randomizer" component={Randomizer} />
 
-        <Switch>
-          <Route path="/meal/:id" component={ShowMeal} />
-          <Route path="/meal/create" component={Authenticated(CreateMeal)} />
-          <Route path="/meal/:id/edit" component={Authenticated(EditMeal)} />
-        </Switch>
-      </div>
-    </section>
+    <Route path="/planner" exact component={Authenticated(Planner)} />
+    <Route path="/planner/:number/:year?" component={Authenticated(Planner)} />
+
+    <Switch>
+      <Route path="/meal/:id" component={ShowMeal} />
+      <Route path="/meal/create" component={Authenticated(CreateMeal)} />
+      <Route path="/meal/:id/edit" component={Authenticated(EditMeal)} />
+    </Switch>
   </div>
 )
 

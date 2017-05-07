@@ -58,66 +58,62 @@ class LoginPage extends Component {
       })
 
       return (
-        <div className="columns">
-          <div className="column is-8 is-offset-2">
-            <Card title="Register">
+        <Card title="Register">
 
-              <div className="register-page columns">
-                <div className="column is-8 is-offset-2">
+          <div className="register-page columns">
+            <div className="column is-8 is-offset-2">
 
-                  <Message title="Error" className="is-danger" visible={!!this.props.error}>
-                    <p>An error occured while creating an account.</p>
-                    <p>Please try again.</p>
-                  </Message>
+              <Message title="Error" className="is-danger" visible={!!this.props.error}>
+                <p>An error occured while creating an account.</p>
+                <p>Please try again.</p>
+              </Message>
 
-                  <form autoComplete="off" onSubmit={e => this.handleOnSubmit(e)}>
-                    <Input
-                      type="text"
-                      name="name"
-                      placeholder="Your name"
-                      onChange={this.handleOnChange}
-                      icon="fa-user"
-                    />
+              <form autoComplete="off" onSubmit={e => this.handleOnSubmit(e)}>
+                <Input
+                  type="text"
+                  name="name"
+                  placeholder="Your name"
+                  onChange={this.handleOnChange}
+                  icon="fa-user"
+                />
 
-                    <Input
-                      type="email"
-                      name="email"
-                      placeholder="Email"
-                      onChange={this.handleOnChange}
-                      icon="fa-envelope"
-                    />
+                <Input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  onChange={this.handleOnChange}
+                  icon="fa-envelope"
+                />
 
-                    <Input
-                      type="password"
-                      name="password"
-                      placeholder="Password"
-                      onChange={this.handleOnChange}
-                      icon="fa-lock"
-                    />
+                <Input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  onChange={this.handleOnChange}
+                  icon="fa-lock"
+                />
 
-                    <Input
-                      type="password"
-                      name="passwordRe"
-                      placeholder="Password Again"
-                      onChange={this.handleOnChange}
-                      icon="fa-lock"
-                    />
+                <Input
+                  type="password"
+                  name="passwordRe"
+                  placeholder="Password Again"
+                  onChange={this.handleOnChange}
+                  icon="fa-lock"
+                />
 
-                    <button
-                      type="submit"
-                      className={buttonClasses}
-                      disabled={this.props.loading}
-                    >
-                      Register
-                    </button>
-                  </form>
+                <button
+                  type="submit"
+                  className={buttonClasses}
+                  disabled={this.props.loading}
+                >
+                  Register
+                </button>
+              </form>
 
-                </div>
-              </div>
-
-            </Card>
+            </div>
           </div>
-        </div>
+
+        </Card>
       )
   }
 }

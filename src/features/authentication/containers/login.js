@@ -14,7 +14,6 @@ import Message from "../../../components/message"
 class LoginPage extends Component {
   static propTypes = {
     authenticate:  PropTypes.func.isRequired,
-    // authenticated: PropTypes.bool.isRequired,
     error: PropTypes.string,
     loading: PropTypes.bool.isRequired,
   }
@@ -29,14 +28,6 @@ class LoginPage extends Component {
     email:    "",
     password: "",
   }
-
-  // componentWillReceiveProps(nextProps) {
-  //   if(nextProps.authenticated) {
-  //     browserHistory.push("/form")
-  //   }
-
-  //   // TODO: Show notification: "Welcome back".
-  // }
 
   handleOnChange = e => {
     const { name, value } = e.target
@@ -68,50 +59,46 @@ class LoginPage extends Component {
       })
 
       return (
-        <div className="columns">
-          <div className="column is-8 is-offset-2">
-            <Card title="Login">
+        <Card title="Login">
 
-              <div className="login-page columns">
-                <div className="column is-8 is-offset-2">
+          <div className="columns">
+            <div className="column is-8 is-offset-2">
 
-                  <Message title="Error" className="is-danger" visible={!!this.props.error}>
-                    <p>An error occured while trying to log you in.</p>
-                    <p>Please try again.</p>
-                  </Message>
+              <Message title="Error" className="is-danger" visible={!!this.props.error}>
+                <p>An error occured while trying to log you in.</p>
+                <p>Please try again.</p>
+              </Message>
 
-                  <form autoComplete="off" onSubmit={e => this.handleOnSubmit(e)}>
-                    <Input
-                      type="email"
-                      name="email"
-                      placeholder="Email"
-                      onChange={this.handleOnChange}
-                      icon="fa-user"
-                    />
+              <form autoComplete="off" onSubmit={e => this.handleOnSubmit(e)}>
+                <Input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  onChange={this.handleOnChange}
+                  icon="fa-user"
+                />
 
-                    <Input
-                      type="password"
-                      name="password"
-                      placeholder="Password"
-                      onChange={this.handleOnChange}
-                      icon="fa-lock"
-                    />
+                <Input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  onChange={this.handleOnChange}
+                  icon="fa-lock"
+                />
 
-                    <button
-                      type="submit"
-                      className={buttonClasses}
-                      disabled={this.props.loading}
-                    >
-                      Login
-                    </button>
-                  </form>
+                <button
+                  type="submit"
+                  className={buttonClasses}
+                  disabled={this.props.loading}
+                >
+                  Login
+                </button>
+              </form>
 
-                </div>
-              </div>
-
-            </Card>
+            </div>
           </div>
-        </div>
+
+        </Card>
       )
   }
 }
