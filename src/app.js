@@ -22,12 +22,15 @@ const links = [
   {
     url: "/planner",
     name: "Planner",
+    auth: true,
   }, {
     url: "/randomizer",
     name: "Randomizer",
+    auth: false,
   }, {
     url: "/meals",
     name: "Meals",
+    auth: false,
   },
 ];
 

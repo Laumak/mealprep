@@ -1,12 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { NavLink as RouterLink } from "react-router-dom";
+import React from "react"
+import PropTypes from "prop-types"
+import { NavLink as RouterLink } from "react-router-dom"
 
 const propTypes = {
   name: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
   toggleNav: PropTypes.func.isRequired,
-};
+}
 
 const NavLink = ({ name, url, toggleNav }) => (
   <RouterLink
@@ -17,8 +17,8 @@ const NavLink = ({ name, url, toggleNav }) => (
   >
     {name}
   </RouterLink>
-);
+)
 
-NavLink.propTypes = propTypes;
+NavLink.propTypes = propTypes
 
-export default NavLink;
+export default NavLink
