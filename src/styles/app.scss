@@ -2,6 +2,10 @@
 
 .section.main-content {
   padding: 1.5rem;
+
+  @media screen and (max-width: $tablet) {
+    padding: 10px;
+  }
 }
 
 @import "./misc/bulmaFixes";

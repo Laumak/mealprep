@@ -1,3 +1,26 @@
+.button.new {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 1;
+  width: 40px;
+
+  transition: all 150ms ease-in-out;
+
+  .text {
+    display: none;
+  }
+
+  &:hover {
+    width: 120px;
+
+    .text {
+      display: inline-block;
+      margin-left: 8px;
+    }
+  }
+}
+
 .meals {
   .meal {
     margin-bottom: 15px;

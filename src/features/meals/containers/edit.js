@@ -6,6 +6,9 @@ import navigate from "../../../utils/navigate"
 
 import { EditMeal as EditMealAction, FetchMeal, DeleteMeal } from "../actions"
 
+import Card from "../../../components/card"
+import ContentWrapper from "../../../components/contentWrapper"
+
 import MealForm from "../components/mealForm"
 
 class EditMeal extends Component {
@@ -34,6 +37,8 @@ class EditMeal extends Component {
 
   componentDidMount() {
     const mealID = this.props.match.params.id
+
+    this.setState({ loading: true })
 
     this.props.fetchMeal(mealID)
       .then(meal => this.setState({ loading: false, meal }))
@@ -75,15 +80,23 @@ class EditMeal extends Component {
 
   render() {
     return (
-      <MealForm
-        meal={this.state.meal}
-        loading={this.state.loading}
-        submitButtonText="Save"
-        deleteButtonText="Delete"
-        handleOnChange={this.handleOnChange}
-        handleOnSubmit={this.handleOnSubmit}
-        handleOnDelete={this.handleOnDelete}
-      />
+      <ContentWrapper>
+        <div className="columns">
+          <div className="column is-8 is-offset-2">
+            <Card title={this.state.loading ? "..." : this.state.meal.title}>
+              <MealForm
+                meal={this.state.meal}
+                loading={this.state.loading}
+                submitButtonText="Save"
+                deleteButtonText="Delete"
+                handleOnChange={this.handleOnChange}
+                handleOnSubmit={this.handleOnSubmit}
+                handleOnDelete={this.handleOnDelete}
+              />
+            </Card>
+          </div>
+        </div>
+      </ContentWrapper>
     )
   }
 }

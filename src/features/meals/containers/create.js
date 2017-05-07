@@ -6,6 +6,9 @@ import navigate from "../../../utils/navigate"
 
 import { StoreMeal } from "../actions"
 
+import Card from "../../../components/card"
+import ContentWrapper from "../../../components/contentWrapper"
+
 import MealForm from "../components/mealForm"
 
 class CreateMeal extends Component {
@@ -51,12 +54,20 @@ class CreateMeal extends Component {
 
   render() {
     return (
-      <MealForm
-        meal={this.state.meal}
-        loading={this.state.loading}
-        handleOnChange={this.handleOnChange}
-        handleOnSubmit={this.handleOnSubmit}
-      />
+      <ContentWrapper>
+        <div className="columns">
+          <div className="column is-8 is-offset-2">
+            <Card title="Create a meal">
+              <MealForm
+                meal={this.state.meal}
+                loading={this.state.loading}
+                handleOnChange={this.handleOnChange}
+                handleOnSubmit={this.handleOnSubmit}
+              />
+            </Card>
+          </div>
+        </div>
+      </ContentWrapper>
     )
   }
 }

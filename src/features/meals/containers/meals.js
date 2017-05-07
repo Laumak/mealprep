@@ -31,6 +31,7 @@ class Meals extends Component {
 
   state = {
     loading: false,
+    hovering: false,
   }
 
   componentDidMount() {
@@ -66,6 +67,11 @@ class Meals extends Component {
 
     return (
       <ContentWrapper>
+        <Link to="/meal/create" className="button is-success new">
+          <i className="fa fa-plus-circle" aria-hidden="true"></i>
+          <span className="text">New meal</span>
+        </Link>
+
         {
           this.props.meals.data.length ?
             <div className="meals">
@@ -81,10 +87,6 @@ class Meals extends Component {
             </div> :
             <div className="content">
               <p>No meals found.</p>
-
-              <Link to="/meal/create" className="button is-success">
-                Create a meal
-              </Link>
             </div>
         }
       </ContentWrapper>
