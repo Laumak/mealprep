@@ -1,3 +1,11 @@
+.planner-week {
+  .day.is-today {
+    .card-header-title {
+      color: $success;
+    }
+  }
+}
+
 .card-content {
   @media screen and (max-width: $tablet) {
     padding: 0.9rem;

@@ -19,5 +19,6 @@ export default dt => {
     dayNum,
     monthNum,
     dayName,
+    date,
   }
 }
