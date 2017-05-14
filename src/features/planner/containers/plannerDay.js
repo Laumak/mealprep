@@ -1,13 +1,15 @@
 import React from "react"
 import PropTypes from "prop-types"
 
+import dateParser from "../../../utils/dateParser"
+
 import Card        from "../../../components/card"
 import MealChooser from "./chooser"
 
 const propTypes = {
   day: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
     lunch: PropTypes.array,
     dinner: PropTypes.array,
   }),
@@ -15,9 +17,12 @@ const propTypes = {
 }
 
 const PlannerDay = props => {
+  const date  = dateParser(props.day.date)
+  const title = `${date.dayName} (${date.dayNum}.${date.monthNum})`
+
   return (
     <article className="day column is-half">
-      <Card title={props.day.name} toggleable={true} open={props.open}>
+      <Card title={title} toggleable={true} open={props.open}>
         <div className="content">
           <div className="columns is-desktop">
 
