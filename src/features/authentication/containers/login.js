@@ -1,7 +1,9 @@
 import React, { Component } from "react"
-import PropTypes from "prop-types"
-import { connect } from "react-redux"
+import PropTypes            from "prop-types"
+import { connect }          from "react-redux"
+
 import classNames from "classnames"
+import { Link }   from "react-router-dom"
 
 import { Authenticate } from "../actions"
 
@@ -94,6 +96,12 @@ class LoginPage extends Component {
                   Login
                 </button>
               </form>
+
+              <div className="content">
+                <hr />
+
+                <p>Don't have an account yet? <Link to="/register">Register.</Link></p>
+              </div>
 
             </div>
           </div>
