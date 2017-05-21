@@ -1,18 +1,86 @@
-a.nav-item.is-tab.is-active {
-  border-bottom-color: transparent;
-  background-color: $link;
-  color: $white;
-}
-
-a.nav-item.is-tab {
-  transition: all 150ms ease-out;
-
-  &:hover {
+nav.nav {
+  a.nav-item.is-tab.is-active {
     border-bottom-color: transparent;
-    color: $link;
-  }
-
-  &.is-active:hover {
+    background-color: $link;
     color: $white;
   }
+
+  a.nav-item.is-tab {
+    transition: all 150ms ease-out;
+
+    &:hover {
+      border-bottom-color: transparent;
+      color: $link;
+    }
+
+    &.is-active:hover {
+      color: $white;
+    }
+  }
+
+  .nav-right {
+    position: relative;
+    overflow: inherit;
+
+    .profile {
+      cursor: pointer;
+
+      img {
+        border-radius: 50%;
+        height: 35px;
+        width: 35px;
+        max-height: inherit;
+        border: 2px solid transparent;
+        transition: all 200ms ease-out;
+      }
+
+      &:hover {
+        img {
+          border: 2px solid $primary;
+        }
+      }
+
+      &.open {
+        img {
+          border: 2px solid $primary;
+        }
+      }
+    }
+
+    ul.dropdown {
+      display: none;
+      top: 50px;
+      padding: 0;
+
+      &.open {
+        display: block;
+        position: absolute;
+      }
+
+      li.item {
+        padding: 10px;
+        font-size: 13px;
+
+        &:hover {
+          background-color: $primary;
+          cursor: pointer;
+
+          a {
+            color: white;
+          }
+        }
+
+        &:not(:last-child) {
+          border-bottom: 1px solid $border;
+        }
+
+        &.no-bg {
+          &:hover {
+            background-color: inherit;
+          }
+        }
+      }
+    }
+  }
+
 }

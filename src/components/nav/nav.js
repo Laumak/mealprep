@@ -27,6 +27,7 @@ class Nav extends Component {
 
   state = {
     mobileMenuOpen: false,
+    dropdownOpen:       false,
   }
 
   toggleNav = () => this.setState({ mobileMenuOpen: !this.state.mobileMenuOpen })
@@ -56,20 +57,17 @@ class Nav extends Component {
     })
   }
 
+  openTing = () => {
+
+  }
+
   renderAuthButtons = () => {
     if(this.props.authenticated) {
       return (
-        <div className="nav-item">
-          <div className="field is-grouped">
-            <p className="control">
-              <a className="button is-danger" onClick={this.handleLogout}>
-                <span className="icon">
-                  <i className="fa fa-sign-out"></i>
-                </span>
-                <span>Logout</span>
-              </a>
-            </p>
-          </div>
+        <div className={`nav-item profile ${this.state.dropdownOpen ? "open" : ""}`}>
+          <figure className="image" onClick={() => this.setState({ dropdownOpen: !this.state.dropdownOpen })}>
+            <img src="http://placehold.it/64x64" />
+          </figure>
         </div>
       )
     }
@@ -127,6 +125,24 @@ class Nav extends Component {
             { this.renderMenuLinks(this.props.links) }
 
             { this.renderAuthButtons() }
+
+            <ul className={`box dropdown ${this.state.dropdownOpen ? "open" : ""}`}>
+              <li className="item" onClick={() => this.setState({ dropdownOpen: false })}>
+                <Link to="/profile">
+                  View profile
+                </Link>
+              </li>
+
+              <li className="item no-bg">
+                <a className="button is-danger is-small" onClick={this.handleLogout}>
+                  <span className="icon is-small">
+                    <i className="fa fa-sign-out"></i>
+                  </span>
+                  <span>Logout</span>
+                </a>
+              </li>
+            </ul>
+
           </div>
         </div>
       </nav>

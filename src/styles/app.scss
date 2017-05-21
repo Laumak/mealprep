@@ -1,10 +1,19 @@
 @import "~bulma";
 
-.section.main-content {
-  padding: 1.5rem;
+body {
+  background-color: #f7f7f7;
+  min-height: 100vh;
+}
+
+.app-container > .container {
+  margin-top: 30px;
 
   @media screen and (max-width: $tablet) {
-    padding: 10px;
+    margin-top: 0;
+
+    .section {
+      padding: 1.5rem;
+    }
   }
 }
 
@@ -17,3 +26,4 @@
 @import "./features/meals";
 @import "./features/planner";
 @import "./features/randomizer";
+@import "./features/profile";

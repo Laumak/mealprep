@@ -1,21 +1,22 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
-import "./styles/app.scss";
-import "../node_modules/font-awesome/css/font-awesome.css";
+import React from "react"
+import { Route, Switch } from "react-router-dom"
+import "./styles/app.scss"
+import "../node_modules/font-awesome/css/font-awesome.css"
 
 import Authenticated from "./HoC/authenticated"
 
-import Nav from "./components/nav";
+import Nav from "./components/nav"
 
-import Authentication from "./features/authentication";
+import Authentication from "./features/authentication"
 
-import Planner    from "./features/planner";
-import Randomizer from "./features/randomizer";
+import Planner    from "./features/planner"
+import Randomizer from "./features/randomizer"
+import Profile    from "./features/profile"
 
-import Meals      from "./features/meals/containers/meals";
-import ShowMeal   from "./features/meals/containers/show";
-import EditMeal   from "./features/meals/containers/edit";
-import CreateMeal from "./features/meals/containers/create";
+import Meals      from "./features/meals/containers/meals"
+import ShowMeal   from "./features/meals/containers/show"
+import EditMeal   from "./features/meals/containers/edit"
+import CreateMeal from "./features/meals/containers/create"
 
 const links = [
   {
@@ -31,7 +32,7 @@ const links = [
     name: "Meals",
     auth: false,
   },
-];
+]
 
 const App = () => (
   <div className="app-container">
@@ -47,6 +48,8 @@ const App = () => (
 
     <Route path="/planner" exact component={Authenticated(Planner)} />
     <Route path="/planner/:number/:year?" component={Authenticated(Planner)} />
+
+    <Route path="/profile" component={Authenticated(Profile)} />
 
     <Switch>
       <Route path="/meal/create" component={Authenticated(CreateMeal)} />
