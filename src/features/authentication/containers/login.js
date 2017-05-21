@@ -21,8 +21,8 @@ class LoginPage extends Component {
   }
 
   static contextTypes = {
-    router: React.PropTypes.shape({
-      history: React.PropTypes.object.isRequired,
+    router: PropTypes.shape({
+      history: PropTypes.object.isRequired,
     }),
   }
 
@@ -100,7 +100,7 @@ class LoginPage extends Component {
               <div className="content">
                 <hr />
 
-                <p>Don't have an account yet? <Link to="/register">Register.</Link></p>
+                <p>{ "Don't have an account yet?" } <Link to="/register">Register.</Link></p>
               </div>
 
             </div>

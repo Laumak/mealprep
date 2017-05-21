@@ -24,8 +24,8 @@ class Meals extends Component {
   }
 
   static contextTypes = {
-    router: React.PropTypes.shape({
-      history: React.PropTypes.object.isRequired,
+    router: PropTypes.shape({
+      history: PropTypes.object.isRequired,
     }),
   }
 
