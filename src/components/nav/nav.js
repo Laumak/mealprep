@@ -4,6 +4,9 @@ import PropTypes  from "prop-types"
 import { Link }   from "react-router-dom"
 import classNames from "classnames"
 
+import CSSModules from "react-css-modules"
+import styles     from "./nav.sass"
+
 import navigate from "../../utils/navigate"
 
 import { Logout } from "../../features/authentication/actions"
@@ -142,6 +145,6 @@ const mapDispatch = dispatch => ({
   logout: () => dispatch(Logout()),
 })
 
-const connected = connect(mapState, mapDispatch)(Nav)
+const styled = CSSModules(Nav, styles)
 
-export default connected
+export default connect(mapState, mapDispatch)(styled)

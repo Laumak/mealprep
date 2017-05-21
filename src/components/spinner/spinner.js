@@ -1,6 +1,9 @@
 import React from "react"
 import PropTypes from "prop-types"
 
+import CSSModules from "react-css-modules"
+import styles     from "./spinner.sass"
+
 const propTypes = {
   loading: PropTypes.bool.isRequired,
 }
@@ -11,8 +14,8 @@ const Spinner = props => {
   }
 
   return (
-    <div className="spinner-backdrop">
-      <div className="spinner">
+    <div styleName="spinner-backdrop">
+      <div styleName="spinner">
         <i className="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
         <span className="sr-only">Loading...</span>
       </div>
@@ -22,4 +25,6 @@ const Spinner = props => {
 
 Spinner.propTypes = propTypes
 
-export default Spinner
+const styled = CSSModules(Spinner, styles)
+
+export default styled

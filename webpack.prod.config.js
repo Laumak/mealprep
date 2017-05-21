@@ -1,7 +1,7 @@
-import path from "path";
-import webpack from "webpack";
-import autoprefixer from "autoprefixer";
-import WebpackMd5Hash from "webpack-md5-hash";
+import path              from "path";
+import webpack           from "webpack";
+import autoprefixer      from "autoprefixer";
+import WebpackMd5Hash    from "webpack-md5-hash";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 
 export default {
@@ -45,8 +45,23 @@ export default {
         exclude: /node_modules/,
         loaders: ["babel"],
       }, {
-        test: /\.(css|scss)$/,
-        loaders: ["style-loader", "css-loader", "postcss-loader", "sass-loader"],
+        test: /(globals\.sass)$/,
+        loaders: [
+          "style-loader",
+          "css-loader",
+          "sass-loader",
+        ],
+      }, {
+        test: /\.sass$/,
+        include: [
+          path.resolve(__dirname, "src", "containers"),
+          path.resolve(__dirname, "src", "components"),
+        ],
+        loaders: [
+          "style-loader?sourceMap",
+          "css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]",
+          "sass-loader?sourceMap",
+        ],
       }, {
         test: /\.(jpe|jpg|woff|woff2|eot|ttf|svg)(\?.*$|$)/,
         loader: "file-loader",

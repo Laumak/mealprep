@@ -1,7 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import "./styles/app.scss";
-import "../node_modules/font-awesome/css/font-awesome.css";
+import "./styles/globals.sass";
 
 import Authenticated from "./HoC/authenticated"
 

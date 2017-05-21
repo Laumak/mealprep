@@ -1,5 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from "react"
+import PropTypes from "prop-types"
+
+import CSSModules from "react-css-modules"
+import styles     from "./radio.sass"
 
 const propTypes = {
   option: PropTypes.shape({
@@ -9,11 +12,11 @@ const propTypes = {
   }).isRequired,
   onChange: PropTypes.func.isRequired,
   selectedValue: PropTypes.string,
-};
+}
 
 const RadioItem = ({ option: { value, title, parent }, onChange, selectedValue }) => {
   return (
-    <span className="radio-item">
+    <span className="radio-item" styleName="radio-item">
       <input
         type="radio"
         name={parent}
@@ -28,9 +31,11 @@ const RadioItem = ({ option: { value, title, parent }, onChange, selectedValue }
         { title }
       </label>
     </span>
-  );
-};
+  )
+}
 
-RadioItem.propTypes = propTypes;
+RadioItem.propTypes = propTypes
 
-export default RadioItem;
+const styled = CSSModules(RadioItem, styles)
+
+export default styled

@@ -1,17 +1,16 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React     from "react"
+import PropTypes from "prop-types"
 
 const propTypes = {
   loading: PropTypes.bool.isRequired,
   children: PropTypes.any.isRequired,
-};
+}
 
-const Loader = props => {
-  return props.loading
+const Loader = props =>
+  props.loading
     ? <p>Loading...</p>
-    : props.children;
-};
+      : props.children
 
-Loader.propTypes = propTypes;
+Loader.propTypes = propTypes
 
-export default Loader;
+export default Loader

@@ -1,0 +1,23 @@
+$text:     #4c4c4c
+$outline:  #cccccc
+$selected: hsl(171, 100%, 41%)
+
+.radio-group
+  margin-bottom: 15px
+
+.radio-item
+  margin-right: 20px
+
+  input[type="radio"]
+    & + label
+      color: $text
+
+  .radio-button
+    transition: background-color 250ms linear
+    margin-right: 5px
+    vertical-align: middle
+    cursor: pointer
+
+  input[type="radio"]:checked + label
+    .radio-button
+      background-color: $selected

@@ -1,0 +1,15 @@
+$link:  hsl(171, 100%, 41%)
+$white: hsl(0, 0%, 100%)
+
+.nav-item
+  transition: all 150ms ease-out
+  &:hover
+    border-bottom-color: transparent
+    color: $link
+
+  .is-active
+    border-bottom-color: transparent
+    background-color: $link
+    color: $white
+    &:hover
+      color: $white

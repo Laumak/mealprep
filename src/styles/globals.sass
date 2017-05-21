@@ -1,0 +1,18 @@
+$fa-font-path: "~font-awesome/fonts"
+@import "~font-awesome/scss/font-awesome.scss"
+@import "~bulma"
+
+// Bulma 0.4.0 bug fixes
+.nav
+  &>.container
+    @media screen and (max-width: $desktop)
+      width: 100%
+
+  .nav-menu
+    padding: 0
+
+.section.main-content
+  padding: 1.5rem
+
+  @media screen and (max-width: $tablet)
+    padding: 10px

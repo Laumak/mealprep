@@ -28,6 +28,7 @@
     "font-awesome": "^4.7.0",
     "jwt-decode": "^2.2.0",
     "react": "15.5.4",
+    "react-css-modules": "^4.3.0",
     "react-dom": "15.5.4",
     "react-hot-loader": "3.0.0-beta.7",
     "react-redux": "5.0.5",
