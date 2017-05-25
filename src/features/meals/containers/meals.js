@@ -95,7 +95,7 @@ class Meals extends Component {
 }
 
 const mapState = state => ({
-  meals: state.meals.all,
+  meals: state.meals.paginated,
   loading: state.meals.loading,
 })
 

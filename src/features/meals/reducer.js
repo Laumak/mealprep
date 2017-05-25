@@ -1,10 +1,10 @@
 const initialState = {
   selected: {},
   random: {},
-  all: {
+  all: [],
+  paginated: {
     data: [],
   },
-  allz: [],
   loading: false,
   error: null,
 };
@@ -12,12 +12,12 @@ const initialState = {
 const MealsReducer = (state = initialState, { type, payload }) => {
   switch(type) {
     // All meals
-    case "FETCH_MEALS_SUCCESS": {
-      return { ...state, all: payload };
+    case "FETCH_PAGINATED_MEALS_SUCCESS": {
+      return { ...state, paginated: payload };
     }
 
     case "FETCH_ALL_MEALS_SUCCESS": {
-      return { ...state, allz: payload };
+      return { ...state, all: payload };
     }
 
     // All meals - pagination
@@ -29,7 +29,7 @@ const MealsReducer = (state = initialState, { type, payload }) => {
 
       const newState = {
         ...state,
-        all: {
+        paginated: {
           ...payload,
           data: meals,
         },
@@ -53,6 +53,17 @@ const MealsReducer = (state = initialState, { type, payload }) => {
     }
     case "FETCH_RANDOM_MEAL_FAIL": {
       return { state, error: payload };
+    }
+
+    case "DELETE_MEAL_SUCCESS": {
+      const newAll       = state.all.filter(meal => meal.id !== payload)
+      const newPaginated = state.paginated.data.filter(meal => meal.id !== payload)
+
+      return {
+        ...state,
+          all: newAll,
+          paginated: { ...state.paginated, data: newPaginated },
+      };
     }
 
     default: {

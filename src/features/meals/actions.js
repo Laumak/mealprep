@@ -4,18 +4,18 @@ import baseUrl from "../../api/baseUrl"
 import { FetchWeek } from "../planner/actions"
 
 export const FetchMeals = () => dispatch => {
-  dispatch({ type: "FETCH_MEALS_START" })
+  dispatch({ type: "FETCH_PAGINATED_MEALS_START" })
 
   return axios.get(`${baseUrl}/meals`)
     .then(resp => {
       return dispatch({
-        type: "FETCH_MEALS_SUCCESS",
+        type: "FETCH_PAGINATED_MEALS_SUCCESS",
         payload: resp.data.meals,
       })
     })
     .catch(error => {
       return dispatch({
-        type: "FETCH_MEALS_FAIL",
+        type: "FETCH_PAGINATED_MEALS_FAIL",
         payload: error,
       })
     })
@@ -86,11 +86,14 @@ export const EditMeal = meal => dispatch => {
 }
 
 export const DeleteMeal = id => dispatch => {
+  dispatch({ type: "DELETE_MEAL_START" })
+
   return axios.delete(`${baseUrl}/meals/${id}`)
     .then(resp => {
-      dispatch(FetchMeals())
-
-      return resp.data.meal
+      return dispatch({
+        type: "DELETE_MEAL_SUCCESS",
+        payload: resp.data.deletedMeal,
+      })
     })
     .catch(error => {
       return dispatch({
