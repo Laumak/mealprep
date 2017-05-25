@@ -4,6 +4,8 @@ import baseUrl from "../../api/baseUrl"
 import { FetchWeek } from "../planner/actions"
 
 export const FetchMeals = () => dispatch => {
+  dispatch({ type: "FETCH_MEALS_START" })
+
   return axios.get(`${baseUrl}/meals`)
     .then(resp => {
       return dispatch({
@@ -20,6 +22,8 @@ export const FetchMeals = () => dispatch => {
 }
 
 export const FetchAllMeals = () => dispatch => {
+  dispatch({ type: "FETCH_ALL_MEALS_START" })
+
   return axios.get(`${baseUrl}/meals/all`)
     .then(resp => {
       return dispatch({
@@ -36,6 +40,8 @@ export const FetchAllMeals = () => dispatch => {
 }
 
 export const FetchMeal = id => dispatch => {
+  dispatch({ type: "FETCH_MEAL_START" })
+
   return axios.get(`${baseUrl}/meals/${id}`)
     .then(resp => {
       dispatch({

@@ -63,6 +63,9 @@ export default function AuthReducer(state = initialState, action) {
     }
 
     // Check the user's auth status on page load
+    case "AUTH_CHECK_START": {
+      return { ...state, loading: true }
+    }
     case "AUTH_CHECK_SUCCESS": {
       return {
         ...state,

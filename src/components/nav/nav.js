@@ -4,6 +4,8 @@ import PropTypes  from "prop-types"
 import { Link }   from "react-router-dom"
 import classNames from "classnames"
 
+import AuthStatusHoC from "../../HoC/authenticated"
+
 import navigate from "../../utils/navigate"
 
 import { Logout } from "../../features/authentication/actions"
@@ -158,6 +160,8 @@ const mapDispatch = dispatch => ({
   logout: () => dispatch(Logout()),
 })
 
-const connected = connect(mapState, mapDispatch)(Nav)
+const connected = connect(
+  mapState, mapDispatch
+)(AuthStatusHoC(Nav, false))
 
 export default connected

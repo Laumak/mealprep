@@ -11,6 +11,8 @@ export const SaveDailyMeal = ({ type, dayID, mealID }) => dispatch => {
 };
 
 export const FetchCurrentWeek = () => dispatch => {
+  dispatch({ type: "FETCH_CURRENT_WEEK_START" });
+
   return axios.get(`${baseUrl}/week`)
     .then(resp => {
       dispatch({
@@ -23,6 +25,8 @@ export const FetchCurrentWeek = () => dispatch => {
 };
 
 export const FetchWeek = (number, year) => (dispatch, getState) => {
+  dispatch({ type: "FETCH_WEEK_START" });
+
   if(!number) {
     number = getState().weeks.current.number;
   }
@@ -43,6 +47,8 @@ export const FetchWeek = (number, year) => (dispatch, getState) => {
 };
 
 export const GoToWeek = number => dispatch => {
+  dispatch({ type: "FETCH_WEEK_START" });
+
   return axios.get(`${baseUrl}/week/${number}`)
     .then(resp => {
       dispatch({

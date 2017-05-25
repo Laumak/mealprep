@@ -10,10 +10,14 @@ const API = {
   CHECK_AUTH_STATUS: `${BASE_URL}/checkAuthStatus`,
 }
 
-export const CheckAuthStatus = () => dispatch => {
-  dispatch({ type: "AUTH_START" })
-
+export const CheckAuthStatus = () => (dispatch, getState) => {
   return new Promise((resolve, reject) => {
+    if(getState().auth.loading) {
+      return resolve()
+    }
+
+    dispatch({ type: "AUTH_CHECK_START" })
+
     let payload = {}
 
     const tokenState = checkForValidToken()
@@ -43,7 +47,6 @@ export const CheckAuthStatus = () => dispatch => {
         // If the token is expired, remove the expired token and ask the user to log back in.
         if(response.data.error === types.TOKEN_EXPIRED) {
           localStorage.removeItem("token")
-          // browserHistory.push("/login")
         }
 
         dispatch({ type: "AUTH_CHECK_FAIL" })
@@ -58,7 +61,10 @@ export const Register = credentials => dispatch => {
   return new Promise((resolve, reject) =>
     axios.post(API.REGISTER, { user: credentials })
       .then(resp => {
-        localStorage.setItem("token", resp.data.token)
+        const token = resp.data.token
+        localStorage.setItem("token", token)
+
+        axios.defaults.headers.common.Authorization = `Bearer ${token}`
 
         dispatch({ type: "REGISTER_SUCCESS", payload: resp.data.user })
         return resolve(resp.data.message)
@@ -78,7 +84,10 @@ export const Authenticate = credentials => dispatch => {
   return new Promise((resolve, reject) =>
     axios.post(API.AUTHENTICATE, credentials)
       .then(resp => {
-        localStorage.setItem("token", resp.data.token)
+        const token = resp.data.token
+        localStorage.setItem("token", token)
+
+        axios.defaults.headers.common.Authorization = `Bearer ${token}`
 
         dispatch({ type: "AUTH_SUCCESS", payload: resp.data.user })
 
