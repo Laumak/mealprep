@@ -22,8 +22,10 @@ class ShowMeal extends Component {
       title: PropTypes.string,
       description: PropTypes.string,
       url: PropTypes.string,
-      headerImage: PropTypes.string,
-      images: PropTypes.array,
+      header_image: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.object,
+      ]),
       type: PropTypes.string,
     }),
     authenticated: PropTypes.bool.isRequired,
@@ -75,6 +77,11 @@ class ShowMeal extends Component {
 
             <b>Description:</b>
             <p>{this.props.meal.description}</p>
+
+            {
+              this.props.meal.header_image &&
+                <img src={this.props.meal.header_image.url} alt=""/>
+            }
           </Card>
         </article>
       </ContentWrapper>

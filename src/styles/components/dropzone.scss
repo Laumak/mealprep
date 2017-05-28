@@ -1,0 +1,20 @@
+.dropzone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px;
+  border: 2px solid $border;
+  border-radius: 3px;
+  width: 100%;
+  min-height: 50px;
+
+  &:hover {
+    border-color: $border-hover;
+    cursor: pointer;
+  }
+
+  .columns {
+    margin-bottom: 0;
+  }
+}

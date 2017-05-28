@@ -26,10 +26,25 @@ class CreateMeal extends Component {
     loading: false,
     meal: {
       title: "",
-      mealType: "",
+      type: "",
       url: "",
       description: "",
     },
+    files: [],
+  }
+
+  onDrop = (accepted/*, rejected*/) => {
+    this.setState({ files: [ ...accepted, ...this.state.files ] })
+  }
+
+  onFileClick = (e) => {
+    e.stopPropagation();
+
+    const files = this.state.files.filter(file =>
+      file.preview !== e.currentTarget.currentSrc
+    )
+
+    this.setState({ files })
   }
 
   handleOnChange = e => {
@@ -44,10 +59,11 @@ class CreateMeal extends Component {
 
     this.setState({ loading: true })
 
-    this.props.storeMeal(this.state.meal)
-      .then(meal => {
-        this.setState({ loading: false })
+    const files = new FormData()
+    files.append("file", document.getElementById("file").files[0])
 
+    this.props.storeMeal(this.state.meal, files)
+      .then(meal => {
         return navigate(`/meal/${meal.id}`, this.context)
       })
   }
@@ -60,9 +76,12 @@ class CreateMeal extends Component {
             <Card title="Create a meal">
               <MealForm
                 meal={this.state.meal}
+                files={this.state.files}
                 loading={this.state.loading}
                 handleOnChange={this.handleOnChange}
                 handleOnSubmit={this.handleOnSubmit}
+                onDrop={this.onDrop}
+                onFileClick={this.onFileClick}
               />
             </Card>
           </div>
@@ -74,7 +93,7 @@ class CreateMeal extends Component {
 
 const mapDispatch = dispatch => {
   return {
-    storeMeal: meal => dispatch(StoreMeal(meal)),
+    storeMeal: (meal, files) => dispatch(StoreMeal(meal, files)),
   }
 }
 

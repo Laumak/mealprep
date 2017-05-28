@@ -59,13 +59,32 @@ export const FetchMeal = id => dispatch => {
     })
 }
 
-export const StoreMeal = meal => dispatch => {
-  return axios.post(`${baseUrl}/meals`, meal)
-    .then(resp => {
-      dispatch(FetchMeals())
+export const StoreMeal = (meal, file) => dispatch => {
+  return new Promise((resolve, reject) => {
+    axios.post(`${baseUrl}/meals`, meal)
+      // Meal created succesfully
+      .then(resp => {
+        const config = {
+          headers: { "Content-Type": "multipart/form-data" },
+        };
 
-      return resp.data.meal
-    })
+        if(file) {
+          // Attach files
+          return axios.post(`${baseUrl}/files/${resp.data.meal.id}`, file, config)
+            // File upload successful
+            .then(() => {
+              return resolve(resp.data.meal)
+            })
+            // File upload failed
+            .catch(() => {
+              return reject("fail")
+            })
+        }
+
+        // No files to attach
+        return resolve(resp.data.meal);
+      })
+  })
 }
 
 export const EditMeal = meal => dispatch => {
