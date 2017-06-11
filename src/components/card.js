@@ -36,7 +36,7 @@ class Card extends Component {
   }
 
   renderHeaderContent = () => {
-    const { title, id, onHeaderClick, headerButtonText, auth } = this.props
+    const { title, id, onHeaderClick, headerButtonText, auth, toggleable } = this.props
 
     // Header has a clickable button
     if(onHeaderClick && headerButtonText) {
@@ -61,6 +61,12 @@ class Card extends Component {
     if(onHeaderClick) {
       return (
         <a className="card-header-title" onClick={() => onHeaderClick(id)}>
+          { title }
+        </a>
+      )
+    } else if(toggleable) {
+      return (
+        <a className="card-header-title" onClick={this.toggleCardContent}>
           { title }
         </a>
       )
