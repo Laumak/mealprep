@@ -28,8 +28,8 @@ class Nav extends Component {
   }
 
   state = {
+    dropdownOpen:   false,
     mobileMenuOpen: false,
-    dropdownOpen:       false,
   }
 
   toggleNav = () => this.setState({ mobileMenuOpen: !this.state.mobileMenuOpen })
@@ -129,7 +129,7 @@ class Nav extends Component {
             { this.renderAuthButtons() }
 
             <ul className={`box dropdown ${this.state.dropdownOpen ? "open" : ""}`}>
-              <li className="item" onClick={() => this.setState({ dropdownOpen: false })}>
+              <li className="item" onClick={() => this.setState({ dropdownOpen: false, mobileMenuOpen: false })}>
                 <Link to="/profile">
                   View profile
                 </Link>
