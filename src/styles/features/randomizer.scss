@@ -1,17 +1,17 @@
 .randomizer {
+  & > .container {
+    margin-top: 20px;
+  }
+
   .generator {
     margin-bottom: 20px;
 
-    .radio-group {
+    .options {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
       margin-bottom: 20px;
     }
 
-    .clear-selection {
-      position: absolute;
-      top: -6px;
-      right: 0;
-    }
   }
 }
