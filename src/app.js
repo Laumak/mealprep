@@ -5,7 +5,7 @@ import "../node_modules/font-awesome/css/font-awesome.css"
 
 import Authenticated from "./HoC/authenticated"
 
-import Nav from "./components/nav"
+import Nav from "./components/Nav"
 
 import Authentication from "./features/authentication"
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import PropTypes  from "prop-types"
-import { Link }   from "react-router-dom"
+import { Link, withRouter }   from "react-router-dom"
 import classNames from "classnames"
 
 import AuthStatusHoC from "../../HoC/authenticated"
@@ -10,7 +10,7 @@ import navigate from "../../utils/navigate"
 
 import { Logout } from "../../features/authentication/actions"
 
-import NavLink from "./navLink"
+import NavLink from "./components/NavLink"
 
 class Nav extends Component {
   static propTypes = {
@@ -164,4 +164,7 @@ const connected = connect(
   mapState, mapDispatch
 )(AuthStatusHoC(Nav, false))
 
-export default connected
+// https://github.com/ReactTraining/react-router/issues/4638#issuecomment-305036617
+const routed = withRouter(connected)
+
+export default routed
