@@ -15,7 +15,7 @@
     "clean-dist": "rimraf ./dist && mkdir dist",
     "prodMessage": "babel-node buildScripts/prodMessage.js",
     "copy-assets": "cp src/.htaccess dist/.htaccess",
-    "preprod": "npm-run-all prodMessage clean-dist lint copy-assets",
+    "preprod": "npm-run-all prodMessage clean-dist copy-assets",
     "prod": "babel-node buildScripts/build.js",
     "prod:server": "babel-node buildScripts/prodServer.js",
     "test": "mocha buildScripts/testSetup.js \"test/**/*.test.js\"",
