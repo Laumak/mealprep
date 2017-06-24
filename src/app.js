@@ -36,7 +36,7 @@ const links = [
 
 const App = () => (
   <div className="app-container">
-    <Nav title="Meal Prep" links={links} />
+    <Nav title="Meal Prepperino" links={links} />
 
     <Route path="/" exact component={Authenticated(Planner)} />
 
