@@ -10,7 +10,7 @@ import navigate from "../../utils/navigate"
 
 import { Logout } from "../../features/authentication/actions"
 
-import NavLink from "./components/NavLink"
+import NavLink from "./components/navLink"
 
 class Nav extends Component {
   static propTypes = {
