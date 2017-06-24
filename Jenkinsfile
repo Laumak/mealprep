@@ -1,4 +1,8 @@
 node {
+    stage('Cleanup') {
+        deleteDir()
+    }
+
     stage('Checkout') {
         checkout scm
     }
