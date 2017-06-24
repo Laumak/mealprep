@@ -43,4 +43,8 @@ node {
             sh "scp -P ${SSH_PORT} -r dist/ ${remote}:${FOLDER}"
         }
     }
+
+    stage('Notify') {
+        slackSend "Build done: ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+    }
 }
