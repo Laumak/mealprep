@@ -31,8 +31,11 @@ node {
     stage('Deploy') {
         echo '-- Deploying the application --'
 
+        def remote = "${USERNAME}@${SERVER_IP}"
+
         sshagent(credentials: ['47f7eb21-7cb6-45a1-a348-8d8e10817dc0'], ignoreMissing: true) {
-            sh 'scp -P ${SSH_PORT} -r dist/ ${USERNAME}@${SERVER_IP}:${FOLDER}'
+            sh "ssh ${remote} rm -rf ${FOLDER}"
+            sh "scp -P ${SSH_PORT} -r dist/ ${remote}:${FOLDER}"
         }
     }
 }
