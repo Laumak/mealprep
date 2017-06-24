@@ -24,6 +24,7 @@ node {
 
     stage('Build') {
         echo '-- Building the application -- '
+        sh 'npm rebuild node-sass'
         sh 'npm run prod'
         echo '-- Build complete -- '
     }
