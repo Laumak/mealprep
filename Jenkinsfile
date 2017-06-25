@@ -38,7 +38,7 @@ node {
 
         def remote = "${USERNAME}@${SERVER_IP}"
 
-        sshagent(credentials: ['47f7eb21-7cb6-45a1-a348-8d8e10817dc0'], ignoreMissing: true) {
+        sshagent(['jenkins-ssh-key']) {
             sh "ssh ${remote} -p ${SSH_PORT} rm -rf ${FOLDER}"
             sh "scp -P ${SSH_PORT} -r dist/ ${remote}:${FOLDER}"
         }
